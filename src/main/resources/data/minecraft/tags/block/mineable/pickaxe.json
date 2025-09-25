@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "mod3rnmod:arkadium_block",
+    "mod3rnmod:arkadium_ore",
+    "mod3rnmod:arkadium_deepslate_ore"
+  ]
+}

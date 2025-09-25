@@ -22,18 +22,21 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> ARKADIUM_BLOCK =registerBlock("arkadium_block",
             ()-> new Block(BlockBehaviour.Properties.of()
-                    .strength(4f)
+                    .strength(3f)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.METAL).setId(BLOCKS.key("arkadium_block"))));
 
+
     public static final RegistryObject<Block> ARKADIUM_ORE =registerBlock("arkadium_ore",
             ()-> new DropExperienceBlock(UniformInt.of(2,4), BlockBehaviour.Properties.of()
-                    .strength(4f)
+                    .strength(2.5f)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE).setId(BLOCKS.key("arkadium_ore"))));
+
+
     public static final RegistryObject<Block> ARKADIUM_DEEPSLATE_ORE =registerBlock("arkadium_deepslate_ore",
             ()-> new DropExperienceBlock(UniformInt.of(3,6), BlockBehaviour.Properties.of()
-                    .strength(5f)
+                    .strength(3.5f)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.DEEPSLATE).setId(BLOCKS.key("arkadium_deepslate_ore"))));
 
