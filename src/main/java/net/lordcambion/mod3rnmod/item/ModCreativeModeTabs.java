@@ -21,6 +21,7 @@ public class ModCreativeModeTabs {
                             .displayItems((pParameters, pOutput) -> {
                                 pOutput.accept(ModItems.ARKADIUM_INGOT.get());
                                 pOutput.accept((ModItems.RAW_ARKADIUM.get()));
+                                pOutput.accept((ModItems.CHISEL.get()));
                             }).build());
 
      public static final RegistryObject<CreativeModeTab> ARKADIUM_BLOCKS_TAB =
