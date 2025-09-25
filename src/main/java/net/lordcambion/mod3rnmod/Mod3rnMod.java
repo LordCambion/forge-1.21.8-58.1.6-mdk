@@ -1,6 +1,8 @@
 package net.lordcambion.mod3rnmod;
 
 import com.mojang.logging.LogUtils;
+import net.lordcambion.mod3rnmod.block.ModBlocks;
+import net.lordcambion.mod3rnmod.item.ModCreativeModeTabs;
 import net.lordcambion.mod3rnmod.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -28,8 +30,11 @@ public final class Mod3rnMod {
         // Register the commonSetup method for modloading
         FMLCommonSetupEvent.getBus(modBusGroup).addListener(this::commonSetup);
 
+        ModCreativeModeTabs.register(modBusGroup);
 
         ModItems.register(modBusGroup);
+        ModBlocks.register(modBusGroup);
+
         // Register the item to a creative tab
         BuildCreativeModeTabContentsEvent.getBus(modBusGroup).addListener(Mod3rnMod::addCreative);
 
@@ -46,6 +51,9 @@ public final class Mod3rnMod {
         if(event.getTabKey()== CreativeModeTabs.INGREDIENTS){
             event.accept(ModItems.ARKADIUM_INGOT.get());
             event.accept(ModItems.RAW_ARKADIUM.get());
+        }
+        if(event.getTabKey()==CreativeModeTabs.BUILDING_BLOCKS){
+            event.accept(ModBlocks.ARKADIUM_BLOCK.get());
         }
     }
 

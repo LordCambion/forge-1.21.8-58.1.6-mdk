@@ -1,4 +1,7 @@
 {
   "item.mod3rnmod.arkadium_ingot": "Arkadium Ingot",
-  "item.mod3rnmod.raw_arkadium": "Raw Arkadium"
+  "item.mod3rnmod.raw_arkadium": "Raw Arkadium",
+  "item.mod3rnmod.arkadium_block":  "Block of Arkadium",
+  "creativetab.mod3rnmod.arkadium_items" : "Arkadium Items",
+  "creativetab.mod3rnmod.arkadium_blocks": "Blocks of Arkadium"
 }
