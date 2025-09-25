@@ -1,6 +1,8 @@
 package net.lordcambion.mod3rnmod;
 
 import com.mojang.logging.LogUtils;
+import net.lordcambion.mod3rnmod.item.ModItems;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
@@ -27,7 +29,7 @@ public final class Mod3rnMod {
         FMLCommonSetupEvent.getBus(modBusGroup).addListener(this::commonSetup);
 
 
-
+        ModItems.register(modBusGroup);
         // Register the item to a creative tab
         BuildCreativeModeTabContentsEvent.getBus(modBusGroup).addListener(Mod3rnMod::addCreative);
 
@@ -41,8 +43,12 @@ public final class Mod3rnMod {
 
     // Add the example block item to the building blocks tab
     private static void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+        if(event.getTabKey()== CreativeModeTabs.INGREDIENTS){
+            event.accept(ModItems.ARKADIUM_INGOT.get());
+            event.accept(ModItems.RAW_ARKADIUM.get());
+        }
     }
+
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, value = Dist.CLIENT)
