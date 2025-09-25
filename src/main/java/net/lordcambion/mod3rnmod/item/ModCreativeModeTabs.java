@@ -30,7 +30,9 @@ public class ModCreativeModeTabs {
                             .title(Component.translatable("creativetab.mod3rnmod.arkadium_blocks"))
                             .displayItems((pParameters, pOutput) -> {
                                 pOutput.accept(ModBlocks.ARKADIUM_BLOCK.get());
-                               // pOutput.accept((ModBlocks.ARKADIUM_BLOCK.get()));
+                                pOutput.accept(ModBlocks.ARKADIUM_ORE.get());
+                                pOutput.accept(ModBlocks.ARKADIUM_DEEPSLATE_ORE.get());
+
                             }).build());
 
 

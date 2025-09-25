@@ -54,6 +54,11 @@ public final class Mod3rnMod {
         }
         if(event.getTabKey()==CreativeModeTabs.BUILDING_BLOCKS){
             event.accept(ModBlocks.ARKADIUM_BLOCK.get());
+
+        }
+        if(event.getTabKey()==CreativeModeTabs.NATURAL_BLOCKS){
+            event.accept(ModBlocks.ARKADIUM_ORE.get());
+            event.accept(ModBlocks.ARKADIUM_DEEPSLATE_ORE.get());
         }
     }
 
