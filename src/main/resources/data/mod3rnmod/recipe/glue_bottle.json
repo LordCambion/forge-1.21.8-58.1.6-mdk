@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:bone_meal",
+
+    "minecraft:slime_ball",
+
+
+    "minecraft:potion"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mod3rnmod:glue_bottle"
+  }
+}

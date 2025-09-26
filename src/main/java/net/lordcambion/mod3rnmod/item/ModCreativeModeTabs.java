@@ -22,6 +22,7 @@ public class ModCreativeModeTabs {
                                 pOutput.accept(ModItems.ARKADIUM_INGOT.get());
                                 pOutput.accept((ModItems.RAW_ARKADIUM.get()));
                                 pOutput.accept((ModItems.CHISEL.get()));
+                                pOutput.accept((ModItems.GLUE_BOTTLE.get()));
                             }).build());
 
      public static final RegistryObject<CreativeModeTab> ARKADIUM_BLOCKS_TAB =
@@ -33,6 +34,7 @@ public class ModCreativeModeTabs {
                                 pOutput.accept(ModBlocks.ARKADIUM_BLOCK.get());
                                 pOutput.accept(ModBlocks.ARKADIUM_ORE.get());
                                 pOutput.accept(ModBlocks.ARKADIUM_DEEPSLATE_ORE.get());
+                                pOutput.accept(ModBlocks.GLUE_BLOCK.get());
 
                             }).build());
 

@@ -1,6 +1,7 @@
 package net.lordcambion.mod3rnmod.block;
 
 import net.lordcambion.mod3rnmod.Mod3rnMod;
+import net.lordcambion.mod3rnmod.block.custom.GlueBlock;
 import net.lordcambion.mod3rnmod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -39,6 +40,15 @@ public class ModBlocks {
                     .strength(3.5f)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.DEEPSLATE).setId(BLOCKS.key("arkadium_deepslate_ore"))));
+
+
+    public static final RegistryObject<Block> GLUE_BLOCK = registerBlock("glue_block",
+            ()->new GlueBlock(BlockBehaviour.Properties.of()
+                    .strength(1.5f)
+                    .requiresCorrectToolForDrops()
+                    .noTerrainParticles()
+                    .setId(BLOCKS.key("glue_block"))));
+
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T>block){
         RegistryObject<T> toReturn = BLOCKS.register(name,block);

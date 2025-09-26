@@ -4,6 +4,7 @@ import net.lordcambion.mod3rnmod.Mod3rnMod;
 import net.lordcambion.mod3rnmod.item.custom.ChiselItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.bus.BusGroup;
 
 import net.minecraftforge.registries.DeferredRegister;
@@ -25,6 +26,15 @@ public class ModItems {
                     .setId(ITEMS.key("raw_arkadium"))
             )
     );
+
+    public static final RegistryObject<Item> GLUE_BOTTLE = ITEMS.register("glue_bottle",
+            () -> new Item(new Item.Properties()
+                    .stacksTo(16) // max_stack_size
+                    .craftRemainder(Items.GLASS_BOTTLE)
+                    .setId(ITEMS.key("glue_bottle"))
+            )
+    );
+
 
     public static final RegistryObject<Item> CHISEL= ITEMS.register("chisel",
             ()->new ChiselItem(new Item.Properties()

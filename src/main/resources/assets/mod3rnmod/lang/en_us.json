@@ -3,13 +3,15 @@
 
   "item.mod3rnmod.arkadium_ingot": "Arkadium Ingot",
   "item.mod3rnmod.raw_arkadium": "Raw Arkadium",
+  "item.mod3rnmod.glue_bottle": "Glue Bottle",
   "item.mod3rnmod.chisel": "Chisel",
 
   "creativetab.mod3rnmod.arkadium_blocks": "Blocks of Arkadium",
 
   "item.mod3rnmod.arkadium_block":  "Block of Arkadium",
   "item.mod3rnmod.arkadium_ore":  "Arkadium Ore",
-  "item.mod3rnmod.arkadium_deepslate_ore":  "Deepslate Arkadium Ore"
+  "item.mod3rnmod.arkadium_deepslate_ore":  "Deepslate Arkadium Ore",
+  "item.mod3rnmod.glue_block":  "Glue Block"
 
 
 }
