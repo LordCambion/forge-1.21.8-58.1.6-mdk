@@ -3,6 +3,7 @@ package net.lordcambion.mod3rnmod.block;
 import net.lordcambion.mod3rnmod.Mod3rnMod;
 import net.lordcambion.mod3rnmod.block.custom.GlueBlock;
 import net.lordcambion.mod3rnmod.item.ModItems;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -47,6 +48,7 @@ public class ModBlocks {
                     .strength(1.5f)
                     .requiresCorrectToolForDrops()
                     .noTerrainParticles()
+                    .sound(SoundType.HONEY_BLOCK)
                     .setId(BLOCKS.key("glue_block"))));
 
 

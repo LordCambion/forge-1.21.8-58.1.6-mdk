@@ -15,6 +15,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Mod3rnMod.MOD_ID);
 
+    //minerals
     public static final RegistryObject<Item> ARKADIUM_INGOT = ITEMS.register("arkadium_ingot",
             () -> new Item(new Item.Properties()
                     .setId(ITEMS.key("arkadium_ingot"))
@@ -26,7 +27,7 @@ public class ModItems {
                     .setId(ITEMS.key("raw_arkadium"))
             )
     );
-
+    //utilities
     public static final RegistryObject<Item> GLUE_BOTTLE = ITEMS.register("glue_bottle",
             () -> new Item(new Item.Properties()
                     .stacksTo(16) // max_stack_size
@@ -35,12 +36,18 @@ public class ModItems {
             )
     );
 
-
+    //tools
     public static final RegistryObject<Item> CHISEL= ITEMS.register("chisel",
             ()->new ChiselItem(new Item.Properties()
                     .durability(32)
                     .setId(ITEMS.key("chisel"))));
 
+
+    //foods
+    public static final RegistryObject<Item> POOP = ITEMS.register("poop",
+            ()->new Item(new Item.Properties()
+                    .food(ModFoodProperties.POOP,ModConsumablesProperties.POOP)
+                    .setId(ITEMS.key("poop"))));
 
     public static void register(BusGroup eventBus){
         ITEMS.register(eventBus);
