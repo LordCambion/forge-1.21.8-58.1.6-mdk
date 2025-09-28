@@ -3,16 +3,32 @@
 
   "item.mod3rnmod.arkadium_ingot": "Arkadium Ingot",
   "item.mod3rnmod.raw_arkadium": "Raw Arkadium",
+
+  "creativetab.mod3rnmod.miscellaneous": "Miscellaneous",
+
   "item.mod3rnmod.glue_bottle": "Glue Bottle",
+  "item.mod3rnmod.pyrestone": "Pyrestone",
+
+
+  "creativetab.mod3rnmod.tools": "Tools",
+
   "item.mod3rnmod.chisel": "Chisel",
+
+  "creativetab.mod3rnmod.food": "Foods",
+
   "item.mod3rnmod.poop": "Poop",
 
-  "creativetab.mod3rnmod.arkadium_blocks": "Blocks of Arkadium",
+  "creativetab.mod3rnmod.blocks": "Blocks",
 
   "item.mod3rnmod.arkadium_block":  "Block of Arkadium",
   "item.mod3rnmod.arkadium_ore":  "Arkadium Ore",
   "item.mod3rnmod.arkadium_deepslate_ore":  "Deepslate Arkadium Ore",
-  "item.mod3rnmod.glue_block":  "Glue Block"
+  "item.mod3rnmod.pyrestone_ore": "Pyrestone Ore",
+  "item.mod3rnmod.glue_block":  "Glue Block",
+
+  "tooltip.mod3rnmod.shift_down": "Press §eShift§r for more Information!",
+
+  "tooltip.mod3rnmod.glue_block": "This block is §2STICKY§r"
 
 
 }

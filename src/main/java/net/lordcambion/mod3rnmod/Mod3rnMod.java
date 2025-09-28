@@ -2,6 +2,7 @@ package net.lordcambion.mod3rnmod;
 
 import com.mojang.logging.LogUtils;
 import net.lordcambion.mod3rnmod.block.ModBlocks;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.lordcambion.mod3rnmod.event.PoopMechanicHandler;
 import net.lordcambion.mod3rnmod.item.ModCreativeModeTabs;
@@ -34,9 +35,10 @@ public final class Mod3rnMod {
 
         ModCreativeModeTabs.register(modBusGroup);
 
+
         ModItems.register(modBusGroup);
         ModBlocks.register(modBusGroup);
-
+        //Blocks.BEDROCK.properties().strength(1.0F, 1.0F);
         // Register the item to a creative tab
         BuildCreativeModeTabContentsEvent.getBus(modBusGroup).addListener(Mod3rnMod::addCreative);
 
@@ -53,9 +55,18 @@ public final class Mod3rnMod {
         if(event.getTabKey()== CreativeModeTabs.INGREDIENTS){
             event.accept(ModItems.ARKADIUM_INGOT.get());
             event.accept(ModItems.RAW_ARKADIUM.get());
+            event.accept(ModItems.PYRESTONE.get());
         }
         if(event.getTabKey()==CreativeModeTabs.BUILDING_BLOCKS){
             event.accept(ModBlocks.ARKADIUM_BLOCK.get());
+
+        }
+        if(event.getTabKey()==CreativeModeTabs.REDSTONE_BLOCKS){
+            event.accept(ModBlocks.GLUE_BLOCK.get());
+
+        }
+        if(event.getTabKey()==CreativeModeTabs.FOOD_AND_DRINKS){
+            event.accept(ModItems.POOP.get());
 
         }
         if(event.getTabKey()==CreativeModeTabs.NATURAL_BLOCKS){

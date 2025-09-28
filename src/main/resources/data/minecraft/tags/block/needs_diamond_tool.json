@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
 
-    "mod3rnmod:arkadium_deepslate_ore"
+    "mod3rnmod:arkadium_deepslate_ore",
+    "mod3rnmod:pyrestone_ore"
   ]
 }
