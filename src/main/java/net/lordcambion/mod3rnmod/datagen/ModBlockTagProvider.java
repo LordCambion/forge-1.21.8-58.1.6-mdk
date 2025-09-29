@@ -23,10 +23,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.ARKADIUM_ORE.get())
                 .add(ModBlocks.ARKADIUM_BLOCK.get())
                 .add(ModBlocks.ARKADIUM_DEEPSLATE_ORE.get());
-        tag(BlockTags.NEEDS_STONE_TOOL)
+        tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.PYRESTONE_ORE.get())
-                .add(ModBlocks.ARKADIUM_ORE.get())
+                .add(ModBlocks.ARKADIUM_ORE.get());
+        tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.ARKADIUM_DEEPSLATE_ORE.get());
+
         //tag(BlockTags.FENCES)
                 //.add(ModBlocks.BEAN_FENCE.get());
        // tag(BlockTags.FENCE_GATES)
