@@ -60,7 +60,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> GLUE_BLOCK = registerBlockWithTooltip("glue_block",
             ()->new GlueBlock(BlockBehaviour.Properties.of()
                     .strength(1.5f)
-                    .requiresCorrectToolForDrops()
+
                     .noTerrainParticles()
                     .sound(SoundType.HONEY_BLOCK)
                     .setId(BLOCKS.key("glue_block"))));

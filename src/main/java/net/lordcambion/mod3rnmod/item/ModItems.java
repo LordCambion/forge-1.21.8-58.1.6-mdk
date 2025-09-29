@@ -3,14 +3,17 @@ package net.lordcambion.mod3rnmod.item;
 import net.lordcambion.mod3rnmod.Mod3rnMod;
 import net.lordcambion.mod3rnmod.item.custom.ChiselItem;
 import net.lordcambion.mod3rnmod.item.custom.FuelItem;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraftforge.eventbus.api.bus.BusGroup;
 
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.function.Consumer;
 
 
 public class ModItems {
@@ -55,7 +58,21 @@ public class ModItems {
     public static final RegistryObject<Item> POOP = ITEMS.register("poop",
             ()->new Item(new Item.Properties()
                     .food(ModFoodProperties.POOP,ModConsumablesProperties.POOP)
-                    .setId(ITEMS.key("poop"))));
+
+                    .setId(ITEMS.key("poop"))){
+                @Override
+                public void appendHoverText(ItemStack pStack, TooltipContext pContext, TooltipDisplay pTooltipDisplay,
+                                            Consumer<Component> pTooltipAdder, TooltipFlag pFlag) {
+                    if(!Screen.hasShiftDown()){
+                        pTooltipAdder.accept(Component.translatable("tooltip.mod3rnmod.shift_down"));
+                    }else{
+                        pTooltipAdder.accept(Component.translatable("tooltip.mod3rnmod.poop"));
+                    }
+
+                    super.appendHoverText(pStack, pContext, pTooltipDisplay, pTooltipAdder, pFlag);
+                }
+            });
+
 
     public static void register(BusGroup eventBus){
         ITEMS.register(eventBus);

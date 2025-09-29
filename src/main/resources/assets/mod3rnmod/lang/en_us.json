@@ -28,7 +28,9 @@
 
   "tooltip.mod3rnmod.shift_down": "Press §eShift§r for more Information!",
 
-  "tooltip.mod3rnmod.glue_block": "This block is §2STICKY§r"
+  "tooltip.mod3rnmod.glue_block": "This block is §2STICKY§r",
+  "tooltip.mod3rnmod.chisel": "This Item changes certain Blocks",
+  "tooltip.mod3rnmod.poop": "Mmh.. §5Yummy§r!"
 
 
 }
