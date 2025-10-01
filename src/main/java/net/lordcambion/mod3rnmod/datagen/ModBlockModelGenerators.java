@@ -3,7 +3,10 @@ package net.lordcambion.mod3rnmod.datagen;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import net.lordcambion.mod3rnmod.Mod3rnMod;
 import net.lordcambion.mod3rnmod.block.ModBlocks;
+
+import net.lordcambion.mod3rnmod.block.custom.LampBlock;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelOutput;
 import net.minecraft.client.data.models.MultiVariant;
@@ -19,6 +22,7 @@ import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.level.block.state.properties.WallSide;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
+
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
@@ -118,7 +122,9 @@ public class ModBlockModelGenerators extends BlockModelGenerators {
         createTrivialCube(ModBlocks.ARKADIUM_DEEPSLATE_ORE.get());
         createTrivialCube(ModBlocks.PYRESTONE_ORE.get());
         createTrivialCube(ModBlocks.GLUE_BLOCK.get());
-/*
+        createLamp((LampBlock) ModBlocks.COPPER_LAMP.get());
+        /*
+
         createStairs(ModBlocks.OBSIDIAN_STAIRS.get(), Blocks.OBSIDIAN);
         createSlab(ModBlocks.OBSIDIAN_SLAB.get(),Blocks.OBSIDIAN);
         createButton(ModBlocks.OBSIDIAN_SLAB.get(),Blocks.OBSIDIAN);
@@ -468,6 +474,20 @@ public class ModBlockModelGenerators extends BlockModelGenerators {
                 .with(condition().term(BlockStateProperties.UP, false).term(BlockStateProperties.EAST_WALL, WallSide.LOW), pLowSide.with(Y_ROT_90).with(UV_LOCK))
                 .with(condition().term(BlockStateProperties.UP, false).term(BlockStateProperties.SOUTH_WALL, WallSide.LOW), pLowSide.with(Y_ROT_180).with(UV_LOCK))
                 .with(condition().term(BlockStateProperties.UP, false).term(BlockStateProperties.WEST_WALL, WallSide.LOW), pLowSide.with(Y_ROT_270).with(UV_LOCK));
+    }
+
+    protected void createLamp(LampBlock lampBlock) {
+        // Crea il modello per lo stato spento (usando la texture normale del blocco)
+        MultiVariant offVariant = plainVariant(TexturedModel.CUBE.create(lampBlock, this.modelOutput));
+
+        // Crea il modello per lo stato acceso (usando la texture _on)
+        MultiVariant onVariant = plainVariant(this.createSuffixedVariant(lampBlock, "_on", ModelTemplates.CUBE_ALL, TextureMapping::cube));
+
+        // Genera il blockstate
+        this.blockStateOutput.accept(
+                MultiVariantGenerator.dispatch(lampBlock)
+                        .with(createBooleanModelDispatch(LampBlock.CLICKED, onVariant, offVariant))
+        );
     }
 
 

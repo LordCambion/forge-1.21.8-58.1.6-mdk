@@ -46,6 +46,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.OBSIDIAN_PRESSURE_PLATE.get());
         dropSelf(ModBlocks.OBSIDIAN_BUTTON.get());
 
+        dropSelf(ModBlocks.COPPER_LAMP.get());
 
         //ores -minerals
         this.add(ModBlocks.ARKADIUM_ORE.get(),

@@ -2,14 +2,14 @@ package net.lordcambion.mod3rnmod.block;
 
 import net.lordcambion.mod3rnmod.Mod3rnMod;
 import net.lordcambion.mod3rnmod.block.custom.GlueBlock;
+
+import net.lordcambion.mod3rnmod.block.custom.LampBlock;
+import net.lordcambion.mod3rnmod.block.custom.nonMovable.*;
 import net.lordcambion.mod3rnmod.item.ModItems;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import java.util.List;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -24,7 +24,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -70,7 +69,7 @@ public class ModBlocks {
             ));
 
     public static final RegistryObject<StairBlock>  OBSIDIAN_STAIRS =registerBlock("obsidian_stairs",
-            ()-> new StairBlock(Blocks.OBSIDIAN.defaultBlockState(),
+            ()-> new NonMovableStairBlock(Blocks.OBSIDIAN.defaultBlockState(),
                     BlockBehaviour.Properties.of().
                             mapColor(MapColor.COLOR_BLACK).
                             instrument(NoteBlockInstrument.BASEDRUM).
@@ -80,7 +79,7 @@ public class ModBlocks {
             ));
 
 public static final RegistryObject<SlabBlock>  OBSIDIAN_SLAB =registerBlock("obsidian_slab",
-            ()-> new SlabBlock(
+            ()-> new NonMovableSlabBlock(
                     BlockBehaviour.Properties.of().
                             mapColor(MapColor.COLOR_BLACK).
                             instrument(NoteBlockInstrument.BASEDRUM).
@@ -90,7 +89,7 @@ public static final RegistryObject<SlabBlock>  OBSIDIAN_SLAB =registerBlock("obs
             ));
 
 public static final RegistryObject<PressurePlateBlock>  OBSIDIAN_PRESSURE_PLATE =registerBlock("obsidian_pressure_plate",
-            ()-> new PressurePlateBlock(BlockSetType.STONE,
+            ()-> new NonMovablePressurePlateBlock(BlockSetType.STONE,
                     BlockBehaviour.Properties.of().
                             mapColor(MapColor.COLOR_BLACK).
                             instrument(NoteBlockInstrument.BASEDRUM).
@@ -100,7 +99,7 @@ public static final RegistryObject<PressurePlateBlock>  OBSIDIAN_PRESSURE_PLATE 
             ));
 
 public static final RegistryObject<ButtonBlock>  OBSIDIAN_BUTTON =registerBlock("obsidian_button",
-            ()-> new ButtonBlock(BlockSetType.STONE,22,
+            ()-> new NonMovableButtonBlock(BlockSetType.STONE,22,
                     BlockBehaviour.Properties.of().
                             mapColor(MapColor.COLOR_BLACK).
                             instrument(NoteBlockInstrument.BASEDRUM).
@@ -110,7 +109,7 @@ public static final RegistryObject<ButtonBlock>  OBSIDIAN_BUTTON =registerBlock(
             ));
 
 public static final RegistryObject<WallBlock>  OBSIDIAN_WALL =registerBlock("obsidian_wall",
-            ()-> new WallBlock(
+            ()-> new NonMovableWallBlock(
                     BlockBehaviour.Properties.of().
                             mapColor(MapColor.COLOR_BLACK).
                             instrument(NoteBlockInstrument.BASEDRUM).
@@ -119,13 +118,16 @@ public static final RegistryObject<WallBlock>  OBSIDIAN_WALL =registerBlock("obs
                             .setId(BLOCKS.key("obsidian_wall"))
             ));
 
+    public static final RegistryObject<LampBlock> COPPER_LAMP = registerBlock("copper_lamp",
+            () -> new LampBlock(BlockBehaviour.Properties.of().strength(2f)
+                    .lightLevel(state -> state.getValue(LampBlock.CLICKED) ? 15 : 0)
+                    .setId(BLOCKS.key("copper_lamp"))));
 
 
-    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T>block){
-        RegistryObject<T> toReturn = BLOCKS.register(name,block);
-        registeredBlockItem(name,toReturn);
+    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        registeredBlockItem(name, toReturn);
         return toReturn;
-
     }
 
     private static <T extends Block> void registeredBlockItem(String name, RegistryObject<T> block){

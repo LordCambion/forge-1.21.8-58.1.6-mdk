@@ -13,6 +13,7 @@ import javax.swing.text.html.HTML;
 public class ModTags {
     public static class Blocks{
 
+        public static final TagKey<Block> NOT_STICKY =createTag("not_sticky");
         private static TagKey<Block> createTag(String name){
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(Mod3rnMod.MOD_ID,name));
         }
@@ -20,7 +21,7 @@ public class ModTags {
     }
 
     public static class Items{
-        public static final TagKey<Item> TRANSFORMABLE_ITEMS =createTag("transformable_items");
+        //public static final TagKey<Item> TRANSFORMABLE_ITEMS =createTag("transformable_items");
 
         private static TagKey<Item> createTag(String name){
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(Mod3rnMod.MOD_ID,name));

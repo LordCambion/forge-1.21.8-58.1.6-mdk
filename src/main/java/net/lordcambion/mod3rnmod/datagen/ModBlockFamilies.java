@@ -16,7 +16,7 @@ public class ModBlockFamilies extends BlockFamilies {
     private static final Map<Block, BlockFamily> MAP = Maps.newHashMap();
 
 
-        public static final BlockFamily OBSIDIAN = familyBuilder(Blocks.OBSIDIAN)
+        public static final BlockFamily OBSIDIAN_BLOCKS = familyBuilder(Blocks.OBSIDIAN)
                 .stairs(ModBlocks.OBSIDIAN_STAIRS.get())
                 .button(ModBlocks.OBSIDIAN_BUTTON.get())
                 //.fence(ModBlocks.BEAN_FENCE.get())

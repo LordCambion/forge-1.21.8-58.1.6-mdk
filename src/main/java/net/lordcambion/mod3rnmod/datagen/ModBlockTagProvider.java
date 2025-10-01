@@ -2,6 +2,7 @@ package net.lordcambion.mod3rnmod.datagen;
 
 import net.lordcambion.mod3rnmod.Mod3rnMod;
 import net.lordcambion.mod3rnmod.block.ModBlocks;
+import net.lordcambion.mod3rnmod.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -45,6 +46,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
        // tag(BlockTags.FENCE_GATES)
                 //.add(ModBlocks.BEAN_FENCE_GATE.get());
         tag(BlockTags.WALLS)
+                .add(ModBlocks.OBSIDIAN_WALL.get());
+
+        tag(ModTags.Blocks.NOT_STICKY)
+                .add(ModBlocks.OBSIDIAN_PRESSURE_PLATE.get())
+                .add(ModBlocks.OBSIDIAN_BUTTON.get())
+                .add(ModBlocks.OBSIDIAN_STAIRS.get())
+                .add(ModBlocks.OBSIDIAN_SLAB.get())
                 .add(ModBlocks.OBSIDIAN_WALL.get());
     }
 }

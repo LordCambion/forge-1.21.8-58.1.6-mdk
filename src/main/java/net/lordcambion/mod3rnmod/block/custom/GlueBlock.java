@@ -1,6 +1,7 @@
 package net.lordcambion.mod3rnmod.block.custom;
 
 import net.lordcambion.mod3rnmod.block.ModBlocks;
+import net.lordcambion.mod3rnmod.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
@@ -11,7 +12,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.HoneyBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
 public class GlueBlock extends HoneyBlock {
 
@@ -31,13 +34,15 @@ public class GlueBlock extends HoneyBlock {
 
         // Il GlueBlock non si attacca a bottoni e pressure plate
         if (otherBlock instanceof ButtonBlock ||
-                otherBlock instanceof net.minecraft.world.level.block.BasePressurePlateBlock) {
+                otherBlock instanceof net.minecraft.world.level.block.BasePressurePlateBlock
+                        ||otherBlock.defaultBlockState().is(ModTags.Blocks.NOT_STICKY)) {
             return false;
         }
 
         // Comportamento normale per gli altri blocchi
         return super.canStickTo(state, other);
     }
+
 
     @Override
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double fallDistance) {

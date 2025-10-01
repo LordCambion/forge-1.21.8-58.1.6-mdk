@@ -17,8 +17,9 @@ public class ModItemTagProvider extends VanillaItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(ModTags.Items.TRANSFORMABLE_ITEMS)
-                .add(Items.NETHER_STAR)
-                .add(Items.DRAGON_EGG);
+//        tag(ModTags.Items.TRANSFORMABLE_ITEMS)
+//                .add(Items.NETHER_STAR)
+//                .add(Items.DRAGON_EGG);
+
     }
 }
