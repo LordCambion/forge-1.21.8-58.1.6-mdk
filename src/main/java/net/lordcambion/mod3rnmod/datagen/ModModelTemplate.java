@@ -27,6 +27,8 @@ public class ModModelTemplate extends ModelTemplate {
         this.model = pModel;
         this.suffix = pSuffix;
         this.requiredSlots = ImmutableSet.copyOf(pRequiredSlots);
+
+
     }
     public ResourceLocation create(Block pBlock, TextureMapping pTextureMapping, BiConsumer<ResourceLocation, ModelInstance> pOutput) {
         if (pBlock instanceof DoorBlock || pBlock instanceof TrapDoorBlock)

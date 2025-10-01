@@ -5,12 +5,11 @@ package net.lordcambion.mod3rnmod.datagen;
 import net.lordcambion.mod3rnmod.Mod3rnMod;
 import net.lordcambion.mod3rnmod.block.ModBlocks;
 import net.lordcambion.mod3rnmod.item.ModItems;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.*;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.*;
+import net.minecraft.world.entity.vehicle.Minecart;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
@@ -19,6 +18,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -41,6 +41,8 @@ public class ModRecipeProvider extends RecipeProvider implements DataProvider {
                 .define('#', ModItems.ARKADIUM_INGOT.get())
                 .unlockedBy(getHasName(ModItems.ARKADIUM_INGOT.get()), has(ModItems.ARKADIUM_INGOT.get()))
                 .save(this.output);
+
+
 
         this.shaped(RecipeCategory.REDSTONE, ModBlocks.GLUE_BLOCK.get())
                 .pattern("##")
@@ -75,7 +77,17 @@ public class ModRecipeProvider extends RecipeProvider implements DataProvider {
                 .unlockedBy(getHasName(ModItems.COOKED_BEAN.get()), has(ModItems.COOKED_BEAN.get()))
                 .save(this.output);*/
 
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.OBSIDIAN), RecipeCategory.BUILDING_BLOCKS, ModBlocks.OBSIDIAN_STAIRS.get())
+                .unlockedBy(getHasName(Blocks.OBSIDIAN), has(Blocks.OBSIDIAN))
+                .save(this.output, Mod3rnMod.MOD_ID + ":obsidian_stairs_from_stonecutter");
 
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.OBSIDIAN), RecipeCategory.BUILDING_BLOCKS, ModBlocks.OBSIDIAN_SLAB.get(), 2)
+                .unlockedBy(getHasName(Blocks.OBSIDIAN), has(Blocks.OBSIDIAN))
+                .save(this.output, Mod3rnMod.MOD_ID + ":obsidian_slab_from_stonecutter");
+
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.OBSIDIAN), RecipeCategory.DECORATIONS, ModBlocks.OBSIDIAN_WALL.get())
+                .unlockedBy(getHasName(Blocks.OBSIDIAN), has(Blocks.OBSIDIAN))
+                .save(this.output, Mod3rnMod.MOD_ID + ":obsidian_wall_from_stonecutter");
 
     }
     @Override

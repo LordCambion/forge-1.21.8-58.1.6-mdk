@@ -26,6 +26,15 @@
   "item.mod3rnmod.pyrestone_ore": "Pyrestone Ore",
   "item.mod3rnmod.glue_block":  "Glue Block",
 
+  "item.mod3rnmod.obsidian_stairs":  "Obsidian Stairs",
+  "item.mod3rnmod.obsidian_slab":  "Obsidian Slab",
+  "item.mod3rnmod.obsidian_wall":  "Obsidian Wall",
+  "item.mod3rnmod.obsidian_pressure_plate":  "Obsidian Pressure Plate",
+  "item.mod3rnmod.obsidian_button":  "Obsidian Button",
+
+
+
+
   "tooltip.mod3rnmod.shift_down": "Press §eShift§r for more Information!",
 
   "tooltip.mod3rnmod.glue_block": "This block is §2STICKY§r",

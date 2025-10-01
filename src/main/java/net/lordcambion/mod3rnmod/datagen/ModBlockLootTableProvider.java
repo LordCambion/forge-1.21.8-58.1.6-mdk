@@ -34,9 +34,20 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate(){
 
+
         dropSelf(ModBlocks.ARKADIUM_BLOCK.get());
         dropSelf(ModBlocks.GLUE_BLOCK.get());
 
+        //obsidian blocks
+        dropSelf(ModBlocks.OBSIDIAN_WALL.get());
+        dropSelf(ModBlocks.OBSIDIAN_STAIRS.get());
+        this.add(ModBlocks.OBSIDIAN_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.OBSIDIAN_SLAB.get()));
+        dropSelf(ModBlocks.OBSIDIAN_PRESSURE_PLATE.get());
+        dropSelf(ModBlocks.OBSIDIAN_BUTTON.get());
+
+
+        //ores -minerals
         this.add(ModBlocks.ARKADIUM_ORE.get(),
                 block -> createOreDrop(ModBlocks.ARKADIUM_ORE.get(),ModItems.RAW_ARKADIUM.get()));
         this.add(ModBlocks.ARKADIUM_DEEPSLATE_ORE.get(),

@@ -16,6 +16,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Half;
+import net.minecraft.world.level.block.state.properties.WallSide;
+import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
@@ -115,6 +118,14 @@ public class ModBlockModelGenerators extends BlockModelGenerators {
         createTrivialCube(ModBlocks.ARKADIUM_DEEPSLATE_ORE.get());
         createTrivialCube(ModBlocks.PYRESTONE_ORE.get());
         createTrivialCube(ModBlocks.GLUE_BLOCK.get());
+/*
+        createStairs(ModBlocks.OBSIDIAN_STAIRS.get(), Blocks.OBSIDIAN);
+        createSlab(ModBlocks.OBSIDIAN_SLAB.get(),Blocks.OBSIDIAN);
+        createButton(ModBlocks.OBSIDIAN_SLAB.get(),Blocks.OBSIDIAN);
+
+        createPressurePlate(ModBlocks.OBSIDIAN_PRESSURE_PLATE.get(), Blocks.OBSIDIAN);
+        createWall(ModBlocks.OBSIDIAN_WALL.get(), Blocks.OBSIDIAN);
+*/
 
     }
     public class ModBlockFamilyProvider extends BlockFamilyProvider {
@@ -164,17 +175,25 @@ public class ModBlockModelGenerators extends BlockModelGenerators {
         }
 
         public BlockModelGenerators.BlockFamilyProvider wall(Block pWallBlock) {
+            // Usa TextureMapping.cube con il blocco base invece di this.mapping
+            TextureMapping textureMapping = TextureMapping.cube(this.family.getBaseBlock());
+
             MultiVariant multivariant = BlockModelGenerators.plainVariant(
-                    ModModelTemplates.WALL_POST.create(pWallBlock, this.mapping, ModBlockModelGenerators.this.modelOutput)
+                    ModModelTemplates.WALL_POST.create(pWallBlock, textureMapping, ModBlockModelGenerators.this.modelOutput)
             );
             MultiVariant multivariant1 = BlockModelGenerators.plainVariant(
-                    ModModelTemplates.WALL_LOW_SIDE.create(pWallBlock, this.mapping, ModBlockModelGenerators.this.modelOutput)
+                    ModModelTemplates.WALL_LOW_SIDE.create(pWallBlock, textureMapping, ModBlockModelGenerators.this.modelOutput)
             );
             MultiVariant multivariant2 = BlockModelGenerators.plainVariant(
-                    ModModelTemplates.WALL_TALL_SIDE.create(pWallBlock, this.mapping, ModBlockModelGenerators.this.modelOutput)
+                    ModModelTemplates.WALL_TALL_SIDE.create(pWallBlock, textureMapping, ModBlockModelGenerators.this.modelOutput)
             );
-            ModBlockModelGenerators.this.blockStateOutput.accept(BlockModelGenerators.createWall(pWallBlock, multivariant, multivariant1, multivariant2));
-            ResourceLocation resourcelocation = ModModelTemplates.WALL_INVENTORY.create(pWallBlock, this.mapping, ModBlockModelGenerators.this.modelOutput);
+
+            // Assicurati che createWall usi le varianti corrette
+            ModBlockModelGenerators.this.blockStateOutput.accept(
+                    ModBlockModelGenerators.modcreateWall(pWallBlock, multivariant, multivariant1, multivariant2)
+            );
+
+            ResourceLocation resourcelocation = ModModelTemplates.WALL_INVENTORY.create(pWallBlock, textureMapping, ModBlockModelGenerators.this.modelOutput);
             ModBlockModelGenerators.this.registerSimpleItemModel(pWallBlock, resourcelocation);
             return this;
         }
@@ -346,6 +365,110 @@ public class ModBlockModelGenerators extends BlockModelGenerators {
         this.registerSimpleItemModel(pTrapdoorBlock, resourcelocation);
     }
 
+    protected void createStairs(Block stairsBlock, Block baseBlock) {
+        TextureMapping textureMapping = TextureMapping.cube(baseBlock);
+
+        // Crea i modelli per le diverse varianti delle scale
+        ResourceLocation innerModel = ModModelTemplates.STAIRS_INNER.create(stairsBlock, textureMapping, this.modelOutput);
+        ResourceLocation straightModel = ModModelTemplates.STAIRS_STRAIGHT.create(stairsBlock, textureMapping, this.modelOutput);
+        ResourceLocation outerModel = ModModelTemplates.STAIRS_OUTER.create(stairsBlock, textureMapping, this.modelOutput);
+
+        // Crea le varianti multivarianti
+        MultiVariant innerVariant = plainVariant(innerModel);
+        MultiVariant straightVariant = plainVariant(straightModel);
+        MultiVariant outerVariant = plainVariant(outerModel);
+
+        // Genera lo stato del blocco per le scale
+        this.blockStateOutput.accept(createStairs(stairsBlock, innerVariant, straightVariant, outerVariant));
+
+        // Registra il modello dell'item
+        this.registerSimpleItemModel(stairsBlock, straightModel);
+    }
+
+    protected void createSlab(Block slabBlock, Block baseBlock) {
+        TextureMapping textureMapping = TextureMapping.cube(baseBlock);
+
+        // Crea i modelli per le diverse varianti della slab
+        ResourceLocation bottomModel = ModModelTemplates.SLAB_BOTTOM.create(slabBlock, textureMapping, this.modelOutput);
+        ResourceLocation topModel = ModModelTemplates.SLAB_TOP.create(slabBlock, textureMapping, this.modelOutput);
+        ResourceLocation doubleModel = ModModelTemplates.SLAB_DOUBLE.create(slabBlock, textureMapping, this.modelOutput);
+
+        // Crea le varianti multivarianti
+        MultiVariant bottomVariant = plainVariant(bottomModel);
+        MultiVariant topVariant = plainVariant(topModel);
+        MultiVariant doubleVariant = plainVariant(doubleModel);
+
+        // Usa il metodo createSlab statico
+        this.blockStateOutput.accept(createSlab(slabBlock, bottomVariant, topVariant, doubleVariant));
+
+        // Registra il modello dell'item (usiamo il modello bottom per l'item)
+        this.registerSimpleItemModel(slabBlock, bottomModel);
+    }
+    protected void createButton(Block buttonBlock, Block baseBlock) {
+        TextureMapping textureMapping = TextureMapping.cube(baseBlock);
+
+        // Crea i modelli per il button
+        ResourceLocation buttonModel = ModModelTemplates.BUTTON.create(buttonBlock, textureMapping, this.modelOutput);
+        ResourceLocation buttonPressedModel = ModModelTemplates.BUTTON_PRESSED.create(buttonBlock, textureMapping, this.modelOutput);
+        ResourceLocation buttonInventoryModel = ModModelTemplates.BUTTON_INVENTORY.create(buttonBlock, textureMapping, this.modelOutput);
+
+        MultiVariant buttonVariant = plainVariant(buttonModel);
+        MultiVariant buttonPressedVariant = plainVariant(buttonPressedModel);
+
+        // Genera lo stato del blocco
+        this.blockStateOutput.accept(createButton(buttonBlock, buttonVariant, buttonPressedVariant));
+
+        // Registra il modello dell'item (usando l'inventory model)
+        this.registerSimpleItemModel(buttonBlock, buttonInventoryModel);
+    }
+    protected void createPressurePlate(Block pressurePlateBlock, Block baseBlock) {
+        TextureMapping textureMapping = TextureMapping.cube(baseBlock);
+
+        // Crea i modelli per la pressure plate
+        ResourceLocation pressurePlateUpModel = ModModelTemplates.PRESSURE_PLATE_UP.create(pressurePlateBlock, textureMapping, this.modelOutput);
+        ResourceLocation pressurePlateDownModel = ModModelTemplates.PRESSURE_PLATE_DOWN.create(pressurePlateBlock, textureMapping, this.modelOutput);
+
+        MultiVariant pressurePlateUpVariant = plainVariant(pressurePlateUpModel);
+        MultiVariant pressurePlateDownVariant = plainVariant(pressurePlateDownModel);
+
+        // Genera lo stato del blocco
+        this.blockStateOutput.accept(createPressurePlate(pressurePlateBlock, pressurePlateUpVariant, pressurePlateDownVariant));
+
+        // Registra il modello dell'item
+        this.registerSimpleItemModel(pressurePlateBlock, pressurePlateUpModel);
+    }
+
+    protected static BlockModelDefinitionGenerator modcreateWall(Block pBlock, MultiVariant pPost, MultiVariant pLowSide, MultiVariant pTallSide) {
+        return MultiPartGenerator.multiPart(pBlock)
+                // POST (quando c'è blocco sopra)
+                .with(condition().term(BlockStateProperties.UP, true), pPost)
+
+                // UNIONI NORD (con blocchi e con altri muri) - BASSE
+                .with(condition().term(BlockStateProperties.NORTH_WALL, WallSide.LOW), pLowSide.with(UV_LOCK))
+                // UNIONI NORD - ALTE
+                .with(condition().term(BlockStateProperties.NORTH_WALL, WallSide.TALL), pTallSide.with(UV_LOCK))
+
+                // UNIONI EST (con blocchi e con altri muri) - BASSE
+                .with(condition().term(BlockStateProperties.EAST_WALL, WallSide.LOW), pLowSide.with(Y_ROT_90).with(UV_LOCK))
+                // UNIONI EST - ALTE
+                .with(condition().term(BlockStateProperties.EAST_WALL, WallSide.TALL), pTallSide.with(Y_ROT_90).with(UV_LOCK))
+
+                // UNIONI SUD (con blocchi e con altri muri) - BASSE
+                .with(condition().term(BlockStateProperties.SOUTH_WALL, WallSide.LOW), pLowSide.with(Y_ROT_180).with(UV_LOCK))
+                // UNIONI SUD - ALTE
+                .with(condition().term(BlockStateProperties.SOUTH_WALL, WallSide.TALL), pTallSide.with(Y_ROT_180).with(UV_LOCK))
+
+                // UNIONI OVEST (con blocchi e con altri muri) - BASSE
+                .with(condition().term(BlockStateProperties.WEST_WALL, WallSide.LOW), pLowSide.with(Y_ROT_270).with(UV_LOCK))
+                // UNIONI OVEST - ALTE
+                .with(condition().term(BlockStateProperties.WEST_WALL, WallSide.TALL), pTallSide.with(Y_ROT_270).with(UV_LOCK))
+
+                // AGGIUNGI QUESTE: UNIONI TRA MURI QUANDO NON C'È BLOCCCO SOPRA
+                .with(condition().term(BlockStateProperties.UP, false).term(BlockStateProperties.NORTH_WALL, WallSide.LOW), pLowSide.with(UV_LOCK))
+                .with(condition().term(BlockStateProperties.UP, false).term(BlockStateProperties.EAST_WALL, WallSide.LOW), pLowSide.with(Y_ROT_90).with(UV_LOCK))
+                .with(condition().term(BlockStateProperties.UP, false).term(BlockStateProperties.SOUTH_WALL, WallSide.LOW), pLowSide.with(Y_ROT_180).with(UV_LOCK))
+                .with(condition().term(BlockStateProperties.UP, false).term(BlockStateProperties.WEST_WALL, WallSide.LOW), pLowSide.with(Y_ROT_270).with(UV_LOCK));
+    }
 
 
 }

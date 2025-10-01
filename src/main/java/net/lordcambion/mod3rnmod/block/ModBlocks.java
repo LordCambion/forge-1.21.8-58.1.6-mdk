@@ -3,6 +3,7 @@ package net.lordcambion.mod3rnmod.block;
 import net.lordcambion.mod3rnmod.Mod3rnMod;
 import net.lordcambion.mod3rnmod.block.custom.GlueBlock;
 import net.lordcambion.mod3rnmod.item.ModItems;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.network.chat.Component;
@@ -13,10 +14,11 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.TooltipDisplay;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DropExperienceBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.eventbus.api.bus.BusGroup;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -54,7 +56,8 @@ public class ModBlocks {
             ()-> new DropExperienceBlock(UniformInt.of(3,6), BlockBehaviour.Properties.of()
                     .strength(3.5f)
                     .requiresCorrectToolForDrops()
-                    .sound(SoundType.DEEPSLATE).setId(BLOCKS.key("arkadium_deepslate_ore"))));
+                    .sound(SoundType.DEEPSLATE).setId(BLOCKS.key("arkadium_deepslate_ore"))
+            ));
 
 
     public static final RegistryObject<Block> GLUE_BLOCK = registerBlockWithTooltip("glue_block",
@@ -63,7 +66,59 @@ public class ModBlocks {
 
                     .noTerrainParticles()
                     .sound(SoundType.HONEY_BLOCK)
-                    .setId(BLOCKS.key("glue_block"))));
+                    .setId(BLOCKS.key("glue_block"))
+            ));
+
+    public static final RegistryObject<StairBlock>  OBSIDIAN_STAIRS =registerBlock("obsidian_stairs",
+            ()-> new StairBlock(Blocks.OBSIDIAN.defaultBlockState(),
+                    BlockBehaviour.Properties.of().
+                            mapColor(MapColor.COLOR_BLACK).
+                            instrument(NoteBlockInstrument.BASEDRUM).
+                            requiresCorrectToolForDrops().
+                            strength(50.0F, 1200.0F)
+                            .setId(BLOCKS.key("obsidian_stairs"))
+            ));
+
+public static final RegistryObject<SlabBlock>  OBSIDIAN_SLAB =registerBlock("obsidian_slab",
+            ()-> new SlabBlock(
+                    BlockBehaviour.Properties.of().
+                            mapColor(MapColor.COLOR_BLACK).
+                            instrument(NoteBlockInstrument.BASEDRUM).
+                            requiresCorrectToolForDrops().
+                            strength(50.0F, 1200.0F)
+                            .setId(BLOCKS.key("obsidian_slab"))
+            ));
+
+public static final RegistryObject<PressurePlateBlock>  OBSIDIAN_PRESSURE_PLATE =registerBlock("obsidian_pressure_plate",
+            ()-> new PressurePlateBlock(BlockSetType.STONE,
+                    BlockBehaviour.Properties.of().
+                            mapColor(MapColor.COLOR_BLACK).
+                            instrument(NoteBlockInstrument.BASEDRUM).
+                            requiresCorrectToolForDrops().
+                            strength(50.0F, 1200.0F)
+                            .setId(BLOCKS.key("obsidian_pressure_plate"))
+            ));
+
+public static final RegistryObject<ButtonBlock>  OBSIDIAN_BUTTON =registerBlock("obsidian_button",
+            ()-> new ButtonBlock(BlockSetType.STONE,22,
+                    BlockBehaviour.Properties.of().
+                            mapColor(MapColor.COLOR_BLACK).
+                            instrument(NoteBlockInstrument.BASEDRUM).
+                            requiresCorrectToolForDrops().
+                            strength(50.0F, 1200.0F)
+                            .setId(BLOCKS.key("obsidian_button"))
+            ));
+
+public static final RegistryObject<WallBlock>  OBSIDIAN_WALL =registerBlock("obsidian_wall",
+            ()-> new WallBlock(
+                    BlockBehaviour.Properties.of().
+                            mapColor(MapColor.COLOR_BLACK).
+                            instrument(NoteBlockInstrument.BASEDRUM).
+                            requiresCorrectToolForDrops().
+                            strength(50.0F, 1200.0F)
+                            .setId(BLOCKS.key("obsidian_wall"))
+            ));
+
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T>block){

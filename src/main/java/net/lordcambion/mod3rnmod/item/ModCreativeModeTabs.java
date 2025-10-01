@@ -61,6 +61,12 @@ public class ModCreativeModeTabs {
                                 pOutput.accept(ModBlocks.ARKADIUM_DEEPSLATE_ORE.get());
                                 pOutput.accept(ModBlocks.PYRESTONE_ORE.get());
                                 pOutput.accept(ModBlocks.GLUE_BLOCK.get());
+                                pOutput.accept(ModBlocks.OBSIDIAN_STAIRS.get());
+                                pOutput.accept(ModBlocks.OBSIDIAN_SLAB.get());
+                                pOutput.accept(ModBlocks.OBSIDIAN_WALL.get());
+                                pOutput.accept(ModBlocks.OBSIDIAN_BUTTON.get());
+                                pOutput.accept(ModBlocks.OBSIDIAN_PRESSURE_PLATE.get());
+
 
                             }).build());
 
