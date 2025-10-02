@@ -486,7 +486,7 @@ public class ModBlockModelGenerators extends BlockModelGenerators {
         // Genera il blockstate
         this.blockStateOutput.accept(
                 MultiVariantGenerator.dispatch(lampBlock)
-                        .with(createBooleanModelDispatch(LampBlock.CLICKED, onVariant, offVariant))
+                        .with(createBooleanModelDispatch(LampBlock.LIT, onVariant, offVariant))
         );
     }
 

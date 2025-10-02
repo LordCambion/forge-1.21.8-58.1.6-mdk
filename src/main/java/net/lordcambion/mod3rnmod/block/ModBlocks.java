@@ -120,9 +120,8 @@ public static final RegistryObject<WallBlock>  OBSIDIAN_WALL =registerBlock("obs
 
     public static final RegistryObject<LampBlock> COPPER_LAMP = registerBlock("copper_lamp",
             () -> new LampBlock(BlockBehaviour.Properties.of().strength(2f)
-                    .lightLevel(state -> state.getValue(LampBlock.CLICKED) ? 15 : 0)
+                    .lightLevel(state -> state.getValue(LampBlock.LIT) ? 15 : 0)  // CAMBIA QUI: CLICKED -> LIT
                     .setId(BLOCKS.key("copper_lamp"))));
-
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

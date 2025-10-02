@@ -51,6 +51,19 @@ public class ModRecipeProvider extends RecipeProvider implements DataProvider {
                 .unlockedBy(getHasName(ModItems.GLUE_BOTTLE.get()), has(ModItems.GLUE_BOTTLE.get()))
                 .save(this.output);
 
+        this.shaped(RecipeCategory.REDSTONE, ModBlocks.COPPER_LAMP.get())
+                .pattern("CGC")
+                .pattern("GTG")
+                .pattern("CGC")
+                .define('G', Items.GLASS)
+                .define('T', Items.REDSTONE_TORCH)
+                .define('C', Items.COPPER_INGOT)
+                .unlockedBy(getHasName(Items.GLASS), has(Items.GLASS))
+                .unlockedBy(getHasName(Items.REDSTONE_TORCH), has(Items.REDSTONE_TORCH))
+                .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
+                .save(this.output);
+
+
         this.shaped(RecipeCategory.TOOLS, ModItems.CHISEL.get())
                 .pattern("AB")
                 .define('A', Items.STICK)
