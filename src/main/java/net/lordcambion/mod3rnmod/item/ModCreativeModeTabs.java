@@ -29,7 +29,17 @@ public class ModCreativeModeTabs {
                     ()->CreativeModeTab.builder().icon(()-> new ItemStack(ModItems.CHISEL.get()))
                             .title(Component.translatable("creativetab.mod3rnmod.tools"))
                             .displayItems((pParameters, pOutput) -> {
+                                pOutput.accept((ModItems.ARKADIUM_PICKAXE.get()));
+                                pOutput.accept((ModItems.ARKADIUM_AXE.get()));
+                                pOutput.accept((ModItems.ARKADIUM_SHOVEL.get()));
+                                pOutput.accept((ModItems.ARKADIUM_HOE.get()));
+                                pOutput.accept((ModItems.ARKADIUM_HAMMER.get()));
+                                pOutput.accept((ModItems.ARKADIUM_SWORD.get()));
                                 pOutput.accept((ModItems.CHISEL.get()));
+                                pOutput.accept((ModItems.GOLDEN_HAMMER.get()));
+                                pOutput.accept((ModItems.IRON_HAMMER.get()));
+                                pOutput.accept((ModItems.DIAMOND_HAMMER.get()));
+                                pOutput.accept((ModItems.NETHERITE_HAMMER.get()));
                             }).build());
 
 

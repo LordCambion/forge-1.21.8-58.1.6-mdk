@@ -31,16 +31,13 @@ public class DataGenerators {
 
         generator.addProvider(event.includeClient(), new ModModelProvider(packOutput));
 
-//        HolderLookup.Provider registryProvider = lookupProvider.join();
-//        RecipeOutput recipeOutput = new PackRecipeOutputAdapter(packOutput, registryProvider);
-//        generator.addProvider(event.includeServer(), new ModRecipeProvider(registryProvider, recipeOutput));
-
         generator.addProvider(event.includeServer(), new ModRecipeDataProvider(packOutput, lookupProvider));
-
 
         BlockTagsProvider blockTagsProvider = new ModBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
         generator.addProvider(event.includeServer(), blockTagsProvider);
-        generator.addProvider(event.includeServer(), new ModItemTagProvider(packOutput, lookupProvider));
-//        generator.addProvider(bindRegistries(ModRecipeProvider.Runner::new, lookupProvider));
+
+        // MODIFICA QUESTA RIGA - aggiungi i parametri mancanti
+        generator.addProvider(event.includeServer(),
+                new ModItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
     }
 }

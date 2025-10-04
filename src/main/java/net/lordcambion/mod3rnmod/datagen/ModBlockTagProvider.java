@@ -6,8 +6,10 @@ import net.lordcambion.mod3rnmod.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
@@ -54,5 +56,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.OBSIDIAN_STAIRS.get())
                 .add(ModBlocks.OBSIDIAN_SLAB.get())
                 .add(ModBlocks.OBSIDIAN_WALL.get());
+
+        tag(ModTags.Blocks.NEEDS_ARKADIUM_TOOL)
+                .add(Blocks.BEDROCK)
+                .addTag(BlockTags.NEEDS_DIAMOND_TOOL);
+
+        tag(ModTags.Blocks.INCORRECT_FOR_ARKADIUM_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
+                .remove(ModTags.Blocks.NEEDS_ARKADIUM_TOOL);
     }
 }

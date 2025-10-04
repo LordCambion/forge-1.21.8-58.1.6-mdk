@@ -1,7 +1,5 @@
 package net.lordcambion.mod3rnmod.datagen;
 
-
-
 import net.lordcambion.mod3rnmod.Mod3rnMod;
 import net.lordcambion.mod3rnmod.block.ModBlocks;
 import net.lordcambion.mod3rnmod.item.ModItems;
@@ -19,6 +17,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -34,15 +33,42 @@ public class ModRecipeProvider extends RecipeProvider implements DataProvider {
         this.output.includeRootAdvancement();
         this.generateForEnabledBlockFamilies(FeatureFlagSet.of(FeatureFlags.VANILLA));
 
-        this.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ARKADIUM_BLOCK.get())
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .define('#', ModItems.ARKADIUM_INGOT.get())
-                .unlockedBy(getHasName(ModItems.ARKADIUM_INGOT.get()), has(ModItems.ARKADIUM_INGOT.get()))
-                .save(this.output);
+        // Example usage of the helper functions:
+
+        // Block compression/decompression
+        compressBlock(ModBlocks.ARKADIUM_BLOCK.get(), ModItems.ARKADIUM_INGOT.get());
+        decompressBlock(ModItems.ARKADIUM_INGOT.get(), ModBlocks.ARKADIUM_BLOCK.get());
+        //compressBlock4(ModBlocks.GLUE_BLOCK.get(),ModItems.GLUE_BOTTLE.get());
 
 
+        // Tool crafting
+        craftSword(ModItems.ARKADIUM_SWORD.get(), ModItems.ARKADIUM_INGOT.get(), Items.STICK);
+        craftPickaxe(ModItems.ARKADIUM_PICKAXE.get(), ModItems.ARKADIUM_INGOT.get(), Items.STICK);
+        craftAxe(ModItems.ARKADIUM_AXE.get(), ModItems.ARKADIUM_INGOT.get(), Items.STICK);
+        craftShovel(ModItems.ARKADIUM_SHOVEL.get(), ModItems.ARKADIUM_INGOT.get(), Items.STICK);
+        craftHoe(ModItems.ARKADIUM_HOE.get(), ModItems.ARKADIUM_INGOT.get(), Items.STICK);
+
+        craftHammer(ModItems.ARKADIUM_HAMMER.get(), ModItems.ARKADIUM_INGOT.get(), Items.STICK);
+        craftHammer(ModItems.GOLDEN_HAMMER.get(), Items.GOLD_INGOT, Items.STICK);
+        craftHammer(ModItems.IRON_HAMMER.get(), Items.IRON_INGOT, Items.STICK);
+        craftHammer(ModItems.DIAMOND_HAMMER.get(), Items.DIAMOND, Items.STICK);
+       // craftHammer(ModItems.GOLDEN_HAMMER.get(), Items.GOLD_INGOT, Items.STICK);
+        this.netheriteSmithing(ModItems.DIAMOND_HAMMER.get(),RecipeCategory.TOOLS, ModItems.NETHERITE_HAMMER.get());
+
+        // Armor crafting
+        //craftHelmet(ModItems.ARKADIUM_HELMET.get(), ModItems.ARKADIUM_INGOT.get(), "arkadium");
+       // craftChestplate(ModItems.ARKADIUM_CHESTPLATE.get(), ModItems.ARKADIUM_INGOT.get(), "arkadium");
+        //craftLeggings(ModItems.ARKADIUM_LEGGINGS.get(), ModItems.ARKADIUM_INGOT.get(), "arkadium");
+        //craftBoots(ModItems.ARKADIUM_BOOTS.get(), ModItems.ARKADIUM_INGOT.get(), "arkadium");
+
+        // Your existing recipes
+//        this.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ARKADIUM_BLOCK.get())
+//                .pattern("###")
+//                .pattern("###")
+//                .pattern("###")
+//                .define('#', ModItems.ARKADIUM_INGOT.get())
+//                .unlockedBy(getHasName(ModItems.ARKADIUM_INGOT.get()), has(ModItems.ARKADIUM_INGOT.get()))
+//                .save(this.output);
 
         this.shaped(RecipeCategory.REDSTONE, ModBlocks.GLUE_BLOCK.get())
                 .pattern("##")
@@ -63,7 +89,6 @@ public class ModRecipeProvider extends RecipeProvider implements DataProvider {
                 .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
                 .save(this.output);
 
-
         this.shaped(RecipeCategory.TOOLS, ModItems.CHISEL.get())
                 .pattern("AB")
                 .define('A', Items.STICK)
@@ -72,8 +97,6 @@ public class ModRecipeProvider extends RecipeProvider implements DataProvider {
                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
                 .save(this.output);
 
-
-
         this.shapeless(RecipeCategory.MISC, ModItems.ARKADIUM_INGOT.get(), 9)
                 .requires(ModBlocks.ARKADIUM_BLOCK.get())
                 .unlockedBy(getHasName(ModBlocks.ARKADIUM_BLOCK.get()), has(ModBlocks.ARKADIUM_BLOCK.get()))
@@ -81,14 +104,6 @@ public class ModRecipeProvider extends RecipeProvider implements DataProvider {
 
         this.oreSmelting(List.of(ModItems.RAW_ARKADIUM.get(), ModBlocks.ARKADIUM_DEEPSLATE_ORE.get(), ModBlocks.ARKADIUM_ORE.get()), RecipeCategory.MISC, ModItems.ARKADIUM_INGOT.get(), 0.25f, 200, "arkadium");
         this.oreBlasting(List.of(ModItems.RAW_ARKADIUM.get(), ModBlocks.ARKADIUM_DEEPSLATE_ORE.get(), ModBlocks.ARKADIUM_ORE.get()), RecipeCategory.MISC, ModItems.ARKADIUM_INGOT.get(), 0.25f, 200, "arkadium");
-
-        /*SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItems.BEAN.get()), RecipeCategory.FOOD, ModItems.COOKED_BEAN.get(), 0.35f, 200)
-                .unlockedBy(getHasName(ModItems.BEAN.get()), has(ModItems.BEAN.get()))
-                .save(this.output);*/
-
-        /*SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItems.COOKED_BEAN.get()), RecipeCategory.MISC, ModItems.CHARRED_BEAN.get(), 0.35f, 200)
-                .unlockedBy(getHasName(ModItems.COOKED_BEAN.get()), has(ModItems.COOKED_BEAN.get()))
-                .save(this.output);*/
 
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.OBSIDIAN), RecipeCategory.BUILDING_BLOCKS, ModBlocks.OBSIDIAN_STAIRS.get())
                 .unlockedBy(getHasName(Blocks.OBSIDIAN), has(Blocks.OBSIDIAN))
@@ -101,8 +116,181 @@ public class ModRecipeProvider extends RecipeProvider implements DataProvider {
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.OBSIDIAN), RecipeCategory.DECORATIONS, ModBlocks.OBSIDIAN_WALL.get())
                 .unlockedBy(getHasName(Blocks.OBSIDIAN), has(Blocks.OBSIDIAN))
                 .save(this.output, Mod3rnMod.MOD_ID + ":obsidian_wall_from_stonecutter");
-
     }
+
+    // ============ HELPER FUNCTIONS ============
+
+    /**
+     * Compress 9 items into a block (e.g., 9 ingots -> 1 block)
+     */
+    protected void compressBlock(ItemLike block, ItemLike ingredient) {
+        this.shaped(RecipeCategory.BUILDING_BLOCKS, block)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ingredient)
+                .unlockedBy(getHasName(ingredient), has(ingredient))
+                .save(this.output);
+    }
+
+    /**
+     * Decompress a block into 9 items (e.g., 1 block -> 9 ingots)
+     */
+    protected void decompressBlock(ItemLike result, ItemLike block) {
+        this.shapeless(RecipeCategory.MISC, result, 9)
+                .requires(block)
+                .unlockedBy(getHasName(block), has(block))
+                .save(this.output);
+    }
+
+    /**
+     * Compress 4 items into a block (e.g., 4 items -> 1 block)
+     */
+    protected void compressBlock4(ItemLike block, ItemLike ingredient) {
+        this.shaped(RecipeCategory.BUILDING_BLOCKS, block)
+                .pattern("##")
+                .pattern("##")
+                .define('#', ingredient)
+                .unlockedBy(getHasName(ingredient), has(ingredient))
+                .save(this.output);
+    }
+
+    /**
+     * Craft a sword
+     */
+    protected void craftSword(ItemLike sword, ItemLike material, ItemLike stick) {
+        this.shaped(RecipeCategory.COMBAT, sword)
+                .pattern("M")
+                .pattern("M")
+                .pattern("S")
+                .define('M', material)
+                .define('S', stick)
+                .unlockedBy(getHasName(material), has(material))
+                .save(this.output);
+    }
+
+    /**
+     * Craft a pickaxe
+     */
+    protected void craftPickaxe(ItemLike pickaxe, ItemLike material, ItemLike stick) {
+        this.shaped(RecipeCategory.TOOLS, pickaxe)
+                .pattern("MMM")
+                .pattern(" S ")
+                .pattern(" S ")
+                .define('M', material)
+                .define('S', stick)
+                .unlockedBy(getHasName(material), has(material))
+                .save(this.output);
+    }
+
+    /**
+     * Craft an axe
+     */
+    protected void craftAxe(ItemLike axe, ItemLike material, ItemLike stick) {
+        this.shaped(RecipeCategory.TOOLS, axe)
+                .pattern("MM")
+                .pattern("MS")
+                .pattern(" S")
+                .define('M', material)
+                .define('S', stick)
+                .unlockedBy(getHasName(material), has(material))
+                .save(this.output);
+    }
+
+    /**
+     * Craft a shovel
+     */
+    protected void craftShovel(ItemLike shovel, ItemLike material, ItemLike stick) {
+        this.shaped(RecipeCategory.TOOLS, shovel)
+                .pattern("M")
+                .pattern("S")
+                .pattern("S")
+                .define('M', material)
+                .define('S', stick)
+                .unlockedBy(getHasName(material), has(material))
+                .save(this.output);
+    }
+
+    /**
+     * Craft a hoe
+     */
+    protected void craftHoe(ItemLike hoe, ItemLike material, ItemLike stick) {
+        this.shaped(RecipeCategory.TOOLS, hoe)
+                .pattern("MM")
+                .pattern(" S")
+                .pattern(" S")
+                .define('M', material)
+                .define('S', stick)
+                .unlockedBy(getHasName(material), has(material))
+                .save(this.output);
+    }
+
+    /**
+     * Craft a Hammer
+     */
+    protected void craftHammer(ItemLike hammer, ItemLike material, ItemLike stick) {
+        this.shaped(RecipeCategory.TOOLS, hammer)
+                .pattern(" M ")
+                .pattern(" SM")
+                .pattern("S  ")
+                .define('M', material)
+                .define('S', stick)
+                .unlockedBy(getHasName(material), has(material))
+                .save(this.output);
+    }
+
+    /**
+     * Craft a helmet
+     */
+    protected void craftHelmet(ItemLike helmet, ItemLike material ) {
+        this.shaped(RecipeCategory.COMBAT, helmet)
+                .pattern("MMM")
+                .pattern("M M")
+                .define('M', material)
+                .unlockedBy(getHasName(material), has(material))
+                .save(this.output );
+    }
+
+    /**
+     * Craft a chestplate
+     */
+    protected void craftChestplate(ItemLike chestplate, ItemLike material) {
+        this.shaped(RecipeCategory.COMBAT, chestplate)
+                .pattern("M M")
+                .pattern("MMM")
+                .pattern("MMM")
+                .define('M', material)
+                .unlockedBy(getHasName(material), has(material))
+                .save(this.output );
+    }
+
+    /**
+     * Craft leggings
+     */
+    protected void craftLeggings(ItemLike leggings, ItemLike material) {
+        this.shaped(RecipeCategory.COMBAT, leggings)
+                .pattern("MMM")
+                .pattern("M M")
+                .pattern("M M")
+                .define('M', material)
+                .unlockedBy(getHasName(material), has(material))
+                .save(this.output);
+    }
+
+    /**
+     * Craft boots
+     */
+    protected void craftBoots(ItemLike boots, ItemLike material) {
+        this.shaped(RecipeCategory.COMBAT, boots)
+                .pattern("M M")
+                .pattern("M M")
+                .define('M', material)
+                .unlockedBy(getHasName(material), has(material))
+                .save(this.output);
+    }
+
+    // ============ EXISTING METHODS ============
+
     @Override
     protected void generateForEnabledBlockFamilies(FeatureFlagSet pEnabledFeatures) {
         ModBlockFamilies.getAllFamilies().filter(BlockFamily::shouldGenerateRecipe).forEach(p_358446_ -> this.generateRecipes(p_358446_, pEnabledFeatures));

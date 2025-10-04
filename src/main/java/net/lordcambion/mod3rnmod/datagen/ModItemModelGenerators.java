@@ -10,6 +10,7 @@ import net.minecraft.client.data.models.model.ModelLocationUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.BiConsumer;
@@ -27,6 +28,16 @@ public class ModItemModelGenerators extends ItemModelGenerators {
         generateFlatItem(ModItems.RAW_ARKADIUM.get(), ModelTemplates.FLAT_ITEM);
         generateFlatItem(ModItems.ARKADIUM_INGOT.get(), ModelTemplates.FLAT_ITEM);
         generateFlatItem(ModItems.GLUE_BOTTLE.get(), ModelTemplates.FLAT_ITEM);
+        generateFlatItem(ModItems.ARKADIUM_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        generateFlatItem(ModItems.ARKADIUM_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        generateFlatItem(ModItems.ARKADIUM_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        generateFlatItem(ModItems.ARKADIUM_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        generateFlatItem(ModItems.ARKADIUM_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        generateFlatItem(ModItems.ARKADIUM_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        generateFlatItem(ModItems.IRON_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        generateFlatItem(ModItems.GOLDEN_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        generateFlatItem(ModItems.DIAMOND_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        generateFlatItem(ModItems.NETHERITE_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 
         if (this.itemModelOutput instanceof ModModelProvider.ModItemInfoCollector collector)
             collector.generateDefaultBlockModels();

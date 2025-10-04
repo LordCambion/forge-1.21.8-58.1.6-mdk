@@ -2,9 +2,6 @@ package net.lordcambion.mod3rnmod;
 
 import com.mojang.logging.LogUtils;
 import net.lordcambion.mod3rnmod.block.ModBlocks;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.MinecraftForge;
-import net.lordcambion.mod3rnmod.event.PoopMechanicHandler;
 import net.lordcambion.mod3rnmod.item.ModCreativeModeTabs;
 import net.lordcambion.mod3rnmod.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -47,6 +44,7 @@ public final class Mod3rnMod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+
 
     }
 

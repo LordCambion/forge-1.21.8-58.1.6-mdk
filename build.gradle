@@ -66,7 +66,7 @@ minecraft {
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
 //            property 'forge.logging.markers', 'REGISTRIES'
-
+            property 'mixin.debug', 'true'
             property 'forge.logging.console.level', 'debug'
 
             // Recommended for development - enables more descriptive errors at the cost of slower startup and registration.
@@ -135,6 +135,11 @@ repositories {
     // }
 }
 
+
+
+
+
+
 dependencies {
     // Specify the version of Minecraft to use.
     // Any artifact can be supplied so long as it has a "userdev" classifier artifact and is a compatible patcher artifact.
@@ -163,6 +168,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 }
+
 
 // This block of code expands all declared replace properties in the specified resource targets.
 // A missing property will result in an error. Properties are expanded using ${} Groovy notation.
@@ -193,10 +199,12 @@ tasks.named('jar', Jar) {
             'Implementation-Title'    : project.name,
             'Implementation-Version'  : project.jar.archiveVersion,
             'Implementation-Vendor'   : mod_authors
+
         ])
-//        attributes['MixinConfigs'] = "${mod_id}.mixins.json"
+       attributes['MixinConfigs'] = "${mod_id}.mixins.json"
     }
 }
+
 
 // Example configuration to allow publishing using the maven-publish plugin
 publishing {

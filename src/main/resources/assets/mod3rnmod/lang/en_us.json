@@ -13,6 +13,17 @@
   "creativetab.mod3rnmod.tools": "Tools",
 
   "item.mod3rnmod.chisel": "Chisel",
+  "item.mod3rnmod.arkadium_axe": "Arkadium Axe",
+  "item.mod3rnmod.arkadium_hoe": "Arkadium Hoe",
+  "item.mod3rnmod.arkadium_pickaxe": "Arkadium Pickaxe",
+  "item.mod3rnmod.arkadium_shovel": "Arkadium Shovel",
+  "item.mod3rnmod.arkadium_sword": "Arkadium Sword",
+
+  "item.mod3rnmod.arkadium_hammer": "Arkadium Hammer",
+  "item.mod3rnmod.golden_hammer": "Golden Hammer",
+  "item.mod3rnmod.iron_hammer": "Iron Hammer",
+  "item.mod3rnmod.diamond_hammer": "Diamond Hammer",
+  "item.mod3rnmod.netherite_hammer": "Netherite Hammer",
 
   "creativetab.mod3rnmod.food": "Foods",
 
