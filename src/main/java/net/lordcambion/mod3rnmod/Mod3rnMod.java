@@ -13,6 +13,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -28,6 +29,7 @@ public final class Mod3rnMod {
         var modBusGroup = context.getModBusGroup();
 
         // Register the commonSetup method for modloading
+
         FMLCommonSetupEvent.getBus(modBusGroup).addListener(this::commonSetup);
 
         ModCreativeModeTabs.register(modBusGroup);

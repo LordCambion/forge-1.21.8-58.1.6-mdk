@@ -34,7 +34,28 @@ public class ModItemTagProvider extends VanillaItemTagsProvider {
                 .add(ModItems.DIAMOND_HAMMER.get())
                 .add(ModItems.NETHERITE_HAMMER.get());
 
+        tag(ItemTags.ARMOR_ENCHANTABLE)
+                .add(ModItems.ARKADIUM_HELMET.get())
+                .add(ModItems.ARKADIUM_CHESTPLATE.get())
+                .add(ModItems.ARKADIUM_LEGGINGS.get())
+                .add(ModItems.ARKADIUM_BOOTS.get())
+                .add(ModItems.ENDER_HELMET.get())
+                .add(ModItems.ENDER_CHESTPLATE.get())
+                .add(ModItems.ENDER_LEGGINGS.get())
+                .add(ModItems.ENDER_BOOTS.get());
 
+        tag(ItemTags.HEAD_ARMOR_ENCHANTABLE)
+                .add(ModItems.ARKADIUM_HELMET.get())
+                .add(ModItems.ENDER_HELMET.get());
+
+        tag(ItemTags.CHEST_ARMOR_ENCHANTABLE)
+                .add(ModItems.ARKADIUM_CHESTPLATE.get())
+                .add(ModItems.ENDER_CHESTPLATE.get());
+        tag(ItemTags.LEG_ARMOR_ENCHANTABLE)
+                .add(ModItems.ARKADIUM_LEGGINGS.get())
+                .add(ModItems.ENDER_LEGGINGS.get());
+        tag(ItemTags.FOOT_ARMOR_ENCHANTABLE)
+                .add(ModItems.ARKADIUM_BOOTS.get());
 
         // Tag per gli enchantment di durability (Unbreaking, Mending)
         tag(ItemTags.DURABILITY_ENCHANTABLE)
@@ -43,11 +64,21 @@ public class ModItemTagProvider extends VanillaItemTagsProvider {
                 .add(ModItems.ARKADIUM_SHOVEL.get())
                 .add(ModItems.ARKADIUM_HOE.get())
                 .add(ModItems.ARKADIUM_SWORD.get())
+
                 .add(ModItems.ARKADIUM_HAMMER.get())
                 .add(ModItems.GOLDEN_HAMMER.get())
                 .add(ModItems.IRON_HAMMER.get())
                 .add(ModItems.DIAMOND_HAMMER.get())
-                .add(ModItems.NETHERITE_HAMMER.get());
+                .add(ModItems.NETHERITE_HAMMER.get())
+
+                .add(ModItems.ARKADIUM_HELMET.get())
+                .add(ModItems.ARKADIUM_CHESTPLATE.get())
+                .add(ModItems.ARKADIUM_LEGGINGS.get())
+                .add(ModItems.ARKADIUM_BOOTS.get())
+                .add(ModItems.ENDER_HELMET.get())
+                .add(ModItems.ENDER_CHESTPLATE.get())
+                .add(ModItems.ENDER_LEGGINGS.get())
+                .add(ModItems.ENDER_BOOTS.get());
 
         // Tag per gli enchantment di weapon (Sharpness, Looting, etc.)
         tag(ItemTags.WEAPON_ENCHANTABLE)
@@ -61,11 +92,21 @@ public class ModItemTagProvider extends VanillaItemTagsProvider {
                 .add(ModItems.ARKADIUM_SHOVEL.get())
                 .add(ModItems.ARKADIUM_HOE.get())
                 .add(ModItems.ARKADIUM_SWORD.get())
+
                 .add(ModItems.ARKADIUM_HAMMER.get())
                 .add(ModItems.GOLDEN_HAMMER.get())
                 .add(ModItems.IRON_HAMMER.get())
                 .add(ModItems.DIAMOND_HAMMER.get())
-                .add(ModItems.NETHERITE_HAMMER.get());
+                .add(ModItems.NETHERITE_HAMMER.get())
+
+                .add(ModItems.ARKADIUM_HELMET.get())
+                .add(ModItems.ARKADIUM_CHESTPLATE.get())
+                .add(ModItems.ARKADIUM_LEGGINGS.get())
+                .add(ModItems.ARKADIUM_BOOTS.get())
+                .add(ModItems.ENDER_HELMET.get())
+                .add(ModItems.ENDER_CHESTPLATE.get())
+                .add(ModItems.ENDER_LEGGINGS.get())
+                .add(ModItems.ENDER_BOOTS.get());
 
         // Tag specifici per tipo di tool
         tag(ItemTags.AXES)
@@ -87,5 +128,28 @@ public class ModItemTagProvider extends VanillaItemTagsProvider {
 
         tag(ItemTags.SWORDS)
                 .add(ModItems.ARKADIUM_SWORD.get());
+
+        tag(ItemTags.HEAD_ARMOR)
+                .add(ModItems.ARKADIUM_HELMET.get())
+                .add(ModItems.ENDER_HELMET.get());
+        tag(ItemTags.CHEST_ARMOR)
+                .add(ModItems.ARKADIUM_CHESTPLATE.get())
+                .add(ModItems.ENDER_CHESTPLATE.get());
+        tag(ItemTags.LEG_ARMOR)
+                .add(ModItems.ARKADIUM_LEGGINGS.get())
+                .add(ModItems.ENDER_LEGGINGS.get());
+        tag(ItemTags.FOOT_ARMOR)
+                .add(ModItems.ARKADIUM_BOOTS.get())
+                .add(ModItems.ENDER_BOOTS.get());;
+
+        tag(ItemTags.TRIMMABLE_ARMOR)
+                .add(ModItems.ARKADIUM_HELMET.get())
+                .add(ModItems.ARKADIUM_CHESTPLATE.get())
+                .add(ModItems.ARKADIUM_LEGGINGS.get())
+                .add(ModItems.ARKADIUM_BOOTS.get())
+                .add(ModItems.ENDER_HELMET.get())
+                .add(ModItems.ENDER_CHESTPLATE.get())
+                .add(ModItems.ENDER_LEGGINGS.get())
+                .add(ModItems.ENDER_BOOTS.get());
     }
 }

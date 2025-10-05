@@ -11,6 +11,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.enchantment.Enchantable;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraftforge.eventbus.api.bus.BusGroup;
 
 import net.minecraftforge.registries.DeferredRegister;
@@ -58,6 +59,7 @@ public class ModItems {
                     .repairable(Items.IRON_INGOT)
                     .setId(ITEMS.key("chisel"))));
 
+    //arkadium
     public static final RegistryObject<Item> ARKADIUM_SWORD= ITEMS.register("arkadium_sword",
             ()->new ModSwordItem(new Item.Properties()
                     .sword(ModToolMaterials.ARKADIUM,3,-2.4f)
@@ -93,6 +95,37 @@ public static final RegistryObject<Item> ARKADIUM_AXE= ITEMS.register("arkadium_
                     .component(DataComponents.ENCHANTABLE,new Enchantable(15))
                     .setId(ITEMS.key("arkadium_hoe"))));
 
+    //armors
+    //arkadium
+    public static final RegistryObject<Item> ARKADIUM_HELMET = ITEMS.register("arkadium_helmet",
+            ()-> new Item(new Item.Properties().humanoidArmor(ModArmorMaterials.ARKADIUM, ArmorType.HELMET).
+                    setId(ITEMS.key("arkadium_helmet"))));
+    public static final RegistryObject<Item> ARKADIUM_CHESTPLATE = ITEMS.register("arkadium_chestplate",
+            ()-> new Item(new Item.Properties().humanoidArmor(ModArmorMaterials.ARKADIUM, ArmorType.CHESTPLATE).
+                    setId(ITEMS.key("arkadium_chestplate"))));
+    public static final RegistryObject<Item> ARKADIUM_LEGGINGS = ITEMS.register("arkadium_leggings",
+            ()-> new Item(new Item.Properties().humanoidArmor(ModArmorMaterials.ARKADIUM, ArmorType.LEGGINGS).
+                    setId(ITEMS.key("arkadium_leggings"))));
+    public static final RegistryObject<Item> ARKADIUM_BOOTS = ITEMS.register("arkadium_boots",
+            ()-> new Item(new Item.Properties().humanoidArmor(ModArmorMaterials.ARKADIUM, ArmorType.BOOTS).
+                    setId(ITEMS.key("arkadium_boots"))));
+
+    //ender
+    public static final RegistryObject<Item> ENDER_HELMET = ITEMS.register("ender_helmet",
+            ()-> new Item(new Item.Properties().humanoidArmor(ModArmorMaterials.ENDER, ArmorType.HELMET).
+                    setId(ITEMS.key("ender_helmet"))));
+    public static final RegistryObject<Item> ENDER_CHESTPLATE = ITEMS.register("ender_chestplate",
+            ()-> new Item(new Item.Properties().humanoidArmor(ModArmorMaterials.ENDER, ArmorType.CHESTPLATE).
+                    setId(ITEMS.key("ender_chestplate"))));
+    public static final RegistryObject<Item> ENDER_LEGGINGS = ITEMS.register("ender_leggings",
+            ()-> new Item(new Item.Properties().humanoidArmor(ModArmorMaterials.ENDER, ArmorType.LEGGINGS).
+                    setId(ITEMS.key("ender_leggings"))));
+    public static final RegistryObject<Item> ENDER_BOOTS = ITEMS.register("ender_boots",
+            ()-> new Item(new Item.Properties().humanoidArmor(ModArmorMaterials.ENDER, ArmorType.BOOTS).
+                    setId(ITEMS.key("ender_boots"))));
+
+
+    //hammers
     public static final RegistryObject<Item> ARKADIUM_HAMMER= ITEMS.register("arkadium_hammer",
             ()->new HammerItem(new Item.Properties()
                     .pickaxe(ModToolMaterials.ARKADIUM,7,-3.5f)
