@@ -2,15 +2,19 @@ package net.lordcambion.mod3rnmod.event;
 
 import net.lordcambion.mod3rnmod.item.ModItems;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items; // cambierai con gli item di Arkadium
+import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import net.minecraft.world.phys.Vec3;
+
+import static net.lordcambion.mod3rnmod.Mod3rnMod.LOGGER;
 
 @Mod.EventBusSubscriber
 public class ModArmorEvents {
@@ -35,6 +39,32 @@ public class ModArmorEvents {
             }
         }
     }
+//    @SubscribeEvent
+//    public static void onEndermanTarget(LivingChangeTargetEvent event) {
+//        if (!(event.getEntity() instanceof EnderMan enderman)) return;
+//
+//        // debug: registra quando l'evento viene lanciato
+//        LOGGER.debug("LivingChangeTargetEvent fired: entity={} original={} new={}",
+//                event.getEntity(), event.getOriginalTarget(), event.getNewTarget());
+//
+//        // controlliamo sia original che new target (più robusto)
+//        LivingEntity orig = event.getOriginalTarget();
+//        LivingEntity newT = event.getNewTarget();
+//
+//        Player player = null;
+//        if (orig instanceof Player p) player = p;
+//        else if (newT instanceof Player p2) player = p2;
+//
+//        if (player == null) return;
+//
+//        ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
+//        if (!helmet.isEmpty() && helmet.getItem() == ModItems.ENDER_HELMET.get()) {
+//            // metodo più affidabile: forziamo il nuovo target a null (il mob non punterà al player)
+//            event.setNewTarget(null);
+//            LOGGER.info("Prevented Enderman {} from targeting player {}", enderman.getUUID(), player.getName().getString());
+//        }
+//    }
+
 
     private static boolean isWearingFullEnder(Player player) {
         ItemStack helmet = player.getInventory().getEquipment().get(EquipmentSlot.HEAD); // slot casco

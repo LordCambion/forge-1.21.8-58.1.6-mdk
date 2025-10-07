@@ -8,10 +8,17 @@ import net.lordcambion.mod3rnmod.item.custom.Tools.*;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.enchantment.Enchantable;
 import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.item.equipment.Equippable;
+import net.minecraft.world.waypoints.Waypoint;
 import net.minecraftforge.eventbus.api.bus.BusGroup;
 
 import net.minecraftforge.registries.DeferredRegister;
@@ -112,8 +119,18 @@ public static final RegistryObject<Item> ARKADIUM_AXE= ITEMS.register("arkadium_
 
     //ender
     public static final RegistryObject<Item> ENDER_HELMET = ITEMS.register("ender_helmet",
-            ()-> new Item(new Item.Properties().humanoidArmor(ModArmorMaterials.ENDER, ArmorType.HELMET).
-                    setId(ITEMS.key("ender_helmet"))));
+            () -> new Item(new Item.Properties()
+                    .humanoidArmor(ModArmorMaterials.ENDER, ArmorType.HELMET)
+
+                    .component(
+                            DataComponents.ATTRIBUTE_MODIFIERS,
+                            ItemAttributeModifiers.builder()
+                                    .add(Attributes.WAYPOINT_TRANSMIT_RANGE, Waypoint.WAYPOINT_TRANSMIT_RANGE_HIDE_MODIFIER, EquipmentSlotGroup.HEAD, ItemAttributeModifiers.Display.hidden())
+                                    .build()
+                    )
+                    .setId(ITEMS.key("ender_helmet"))
+            )
+    );
     public static final RegistryObject<Item> ENDER_CHESTPLATE = ITEMS.register("ender_chestplate",
             ()-> new Item(new Item.Properties().humanoidArmor(ModArmorMaterials.ENDER, ArmorType.CHESTPLATE).
                     setId(ITEMS.key("ender_chestplate"))));
