@@ -5,21 +5,27 @@ import net.lordcambion.mod3rnmod.item.ModItems;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ItemModelOutput;
 import net.minecraft.client.data.models.ModelProvider;
-import net.minecraft.client.data.models.model.ItemModelUtils;
-import net.minecraft.client.data.models.model.ModelInstance;
-import net.minecraft.client.data.models.model.ModelLocationUtils;
-import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.renderer.item.BlockModelWrapper;
+import net.minecraft.client.renderer.item.ItemModel;
+import net.minecraft.client.renderer.item.RangeSelectItemModel;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.equipment.EquipmentAssets;
 import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.minecraft.world.item.equipment.trim.TrimMaterials;
 import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty;
+
+
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.function.BiConsumer;
+import java.util.Optional;
 
 public class ModItemModelGenerators extends ItemModelGenerators {
     public ModItemModelGenerators(ItemModelOutput pItemModelOutput, BiConsumer<ResourceLocation, ModelInstance> pModelOutput) {
@@ -39,7 +45,11 @@ public class ModItemModelGenerators extends ItemModelGenerators {
         generateFlatItem(ModItems.GLUE_BOTTLE.get(), ModelTemplates.FLAT_ITEM);
 
         //tools
-        generateFlatItem(ModItems.CHISEL.get(), ModelTemplates.FLAT_ITEM);
+        //generateFlatItem(ModItems.CHISEL.get(), ModelTemplates.FLAT_ITEM);
+        generateDamageableItem(ModItems.CHISEL.get(), 0.5f);
+        //horse armor
+
+        generateFlatItem(ModItems.ARKADIUM_HORSE_ARMOR.get(),ModelTemplates.FLAT_ITEM);
 
         //arkadium
         generateFlatItem(ModItems.RAW_ARKADIUM.get(), ModelTemplates.FLAT_ITEM);
@@ -87,6 +97,57 @@ public class ModItemModelGenerators extends ItemModelGenerators {
         trimMaterials.put(TrimMaterials.LAPIS,0.9f);
         trimMaterials.put(TrimMaterials.AMETHYST,1.0f);
     }
+
+    private void generateDamageableItem(Item item, float damageThresholdNormalized) {
+        ResourceLocation itemId = net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(item);
+        String itemPath = itemId.getPath();
+
+        // === Definisce i percorsi texture ===
+        ResourceLocation normalModelLoc = ResourceLocation.fromNamespaceAndPath(itemId.getNamespace(), "item/" + itemPath);
+        ResourceLocation damagedModelLoc = ResourceLocation.fromNamespaceAndPath(itemId.getNamespace(), "item/" + itemPath + "_damaged");
+
+        // === Crea i due modelli di base ===
+        ModelTemplates.FLAT_ITEM.create(
+                normalModelLoc,
+                TextureMapping.layer0(normalModelLoc),
+                this.modelOutput
+        );
+
+        ModelTemplates.FLAT_ITEM.create(
+                damagedModelLoc,
+                TextureMapping.layer0(damagedModelLoc),
+                this.modelOutput
+        );
+
+        // === Proprietà numerica “damage” ===
+        RangeSelectItemModelProperty damageProperty = new net.minecraft.client.renderer.item.properties.numeric.Damage(true);
+
+        // === Crea le Entry per i diversi stati ===
+        List<RangeSelectItemModel.Entry> entries = List.of(
+                new RangeSelectItemModel.Entry(
+                        0.0f, // da 0 fino alla soglia
+                        new BlockModelWrapper.Unbaked(normalModelLoc, List.of())
+                ),
+                new RangeSelectItemModel.Entry(
+                        damageThresholdNormalized, // da qui in poi: danneggiato
+                        new BlockModelWrapper.Unbaked(damagedModelLoc, List.of())
+                )
+        );
+
+        // === Crea il modello “range_dispatch” ===
+        ItemModel.Unbaked dispatchModel = new RangeSelectItemModel.Unbaked(
+                damageProperty, // proprietà da monitorare
+                1.0f,           // scala di normalizzazione (0.0–1.0)
+                entries,        // entry dei modelli
+                Optional.of(new BlockModelWrapper.Unbaked(normalModelLoc, List.of())) // fallback
+        );
+
+        // === Registra il modello generato per l'item ===
+        this.itemModelOutput.accept(item, dispatchModel);
+    }
+
+
+
 
 
 

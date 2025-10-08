@@ -25,6 +25,19 @@
   "item.mod3rnmod.diamond_hammer": "Diamond Hammer",
   "item.mod3rnmod.netherite_hammer": "Netherite Hammer",
 
+  "item.mod3rnmod.arkadium_helmet": "Arkadium Helmet",
+  "item.mod3rnmod.arkadium_chestplate": "Arkadium Chestplate",
+  "item.mod3rnmod.arkadium_leggings": "Arkadium Leggings",
+  "item.mod3rnmod.arkadium_boots": "Arkadium Boots",
+  "item.mod3rnmod.arkadium_horse_armor": "Arkadium Horse Armor",
+
+  "item.mod3rnmod.ender_helmet": "Ender Helmet",
+  "item.mod3rnmod.ender_chestplate": "Ender Chestplate",
+  "item.mod3rnmod.ender_leggings": "Ender Leggings",
+  "item.mod3rnmod.ender_boots": "Ender Boots",
+
+
+
   "creativetab.mod3rnmod.food": "Foods",
 
   "item.mod3rnmod.poop": "Poop",

@@ -4,6 +4,7 @@ import net.lordcambion.mod3rnmod.Mod3rnMod;
 import net.lordcambion.mod3rnmod.item.custom.Chisel.ChiselItem;
 import net.lordcambion.mod3rnmod.item.custom.FuelItem;
 import net.lordcambion.mod3rnmod.item.custom.Hammer.HammerItem;
+import net.lordcambion.mod3rnmod.item.custom.Helmet.EnderHelmetItem;
 import net.lordcambion.mod3rnmod.item.custom.Tools.*;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.component.DataComponents;
@@ -16,6 +17,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.enchantment.Enchantable;
+import net.minecraft.world.item.equipment.ArmorMaterials;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.waypoints.Waypoint;
@@ -117,9 +119,15 @@ public static final RegistryObject<Item> ARKADIUM_AXE= ITEMS.register("arkadium_
             ()-> new Item(new Item.Properties().humanoidArmor(ModArmorMaterials.ARKADIUM, ArmorType.BOOTS).
                     setId(ITEMS.key("arkadium_boots"))));
 
+        //horse
+        public static  final RegistryObject<Item> ARKADIUM_HORSE_ARMOR =ITEMS.register("arkadium_horse_armor",
+                ()-> new Item(new Item.Properties().horseArmor(ModArmorMaterials.ARKADIUM).
+                        setId(ITEMS.key("arkadium_horse_armor"))));
+
+
     //ender
     public static final RegistryObject<Item> ENDER_HELMET = ITEMS.register("ender_helmet",
-            () -> new Item(new Item.Properties()
+            () -> new EnderHelmetItem(new Item.Properties()
                     .humanoidArmor(ModArmorMaterials.ENDER, ArmorType.HELMET)
 
                     .component(

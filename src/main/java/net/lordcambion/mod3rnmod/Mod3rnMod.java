@@ -2,6 +2,7 @@ package net.lordcambion.mod3rnmod;
 
 import com.mojang.logging.LogUtils;
 import net.lordcambion.mod3rnmod.block.ModBlocks;
+import net.lordcambion.mod3rnmod.component.ModDataComponentTypes;
 import net.lordcambion.mod3rnmod.item.ModCreativeModeTabs;
 import net.lordcambion.mod3rnmod.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -37,6 +38,7 @@ public final class Mod3rnMod {
 
         ModItems.register(modBusGroup);
         ModBlocks.register(modBusGroup);
+        ModDataComponentTypes.register(modBusGroup);
         //Blocks.BEDROCK.properties().strength(1.0F, 1.0F);
         // Register the item to a creative tab
         BuildCreativeModeTabContentsEvent.getBus(modBusGroup).addListener(Mod3rnMod::addCreative);

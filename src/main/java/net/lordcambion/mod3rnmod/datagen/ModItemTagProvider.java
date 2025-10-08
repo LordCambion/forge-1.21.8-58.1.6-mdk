@@ -151,5 +151,7 @@ public class ModItemTagProvider extends VanillaItemTagsProvider {
                 .add(ModItems.ENDER_CHESTPLATE.get())
                 .add(ModItems.ENDER_LEGGINGS.get())
                 .add(ModItems.ENDER_BOOTS.get());
+
+
     }
 }

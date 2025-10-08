@@ -26,7 +26,8 @@ public class ModEquipmentAssetProvider implements DataProvider {
     public CompletableFuture<?> run(CachedOutput cache) {
         return CompletableFuture.allOf(
                 generateEquipmentAsset(cache, ModEquipmentAssets.ARKADIUM, "arkadium"),
-                generateEquipmentAsset(cache, ModEquipmentAssets.ENDER, "ender")
+                generateEquipmentAsset(cache, ModEquipmentAssets.ENDER, "ender"),
+                generateHorseEquipmentAsset(cache,ModEquipmentAssets.ARKADIUM,"arkadium")
 
         );
     }
@@ -54,6 +55,26 @@ public class ModEquipmentAssetProvider implements DataProvider {
         Path path = this.pathProvider.json(key.location());
         return DataProvider.saveStable(cache, root, path);
     }
+
+    private CompletableFuture<?> generateHorseEquipmentAsset(CachedOutput cache, ResourceKey<EquipmentAsset> key, String textureName) {
+        JsonObject root = new JsonObject();
+        JsonObject layers = new JsonObject();
+
+        // Layer per humanoid (helmet, chestplate, boots)
+        JsonArray horseArray = new JsonArray();
+        JsonObject horseLayer = new JsonObject();
+        horseLayer.addProperty("texture", Mod3rnMod.MOD_ID + ":" + textureName);
+        horseArray.add(horseLayer);
+        layers.add("horse_body", horseArray);
+
+
+
+        root.add("layers", layers);
+
+        Path path = this.pathProvider.json(key.location());
+        return DataProvider.saveStable(cache, root, path);
+    }
+
 
     @Override
     public String getName() {

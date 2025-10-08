@@ -56,11 +56,14 @@ public class ModRecipeProvider extends RecipeProvider implements DataProvider {
         this.netheriteSmithing(ModItems.DIAMOND_HAMMER.get(),RecipeCategory.TOOLS, ModItems.NETHERITE_HAMMER.get());
 
         // Armor crafting
-        //craftHelmet(ModItems.ARKADIUM_HELMET.get(), ModItems.ARKADIUM_INGOT.get(), "arkadium");
-       // craftChestplate(ModItems.ARKADIUM_CHESTPLATE.get(), ModItems.ARKADIUM_INGOT.get(), "arkadium");
-        //craftLeggings(ModItems.ARKADIUM_LEGGINGS.get(), ModItems.ARKADIUM_INGOT.get(), "arkadium");
-        //craftBoots(ModItems.ARKADIUM_BOOTS.get(), ModItems.ARKADIUM_INGOT.get(), "arkadium");
-
+        craftHelmet(ModItems.ARKADIUM_HELMET.get(), ModItems.ARKADIUM_INGOT.get());
+        craftChestplate(ModItems.ARKADIUM_CHESTPLATE.get(), ModItems.ARKADIUM_INGOT.get());
+        craftLeggings(ModItems.ARKADIUM_LEGGINGS.get(), ModItems.ARKADIUM_INGOT.get());
+        craftBoots(ModItems.ARKADIUM_BOOTS.get(), ModItems.ARKADIUM_INGOT.get());
+        craftHelmet(ModItems.ENDER_HELMET.get(), Items.ENDER_PEARL);
+        craftChestplate(ModItems.ENDER_CHESTPLATE.get(), Items.ENDER_PEARL);
+        craftLeggings(ModItems.ENDER_LEGGINGS.get(), Items.ENDER_PEARL);
+        craftBoots(ModItems.ENDER_BOOTS.get(), Items.ENDER_PEARL);
         // Your existing recipes
 //        this.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ARKADIUM_BLOCK.get())
 //                .pattern("###")

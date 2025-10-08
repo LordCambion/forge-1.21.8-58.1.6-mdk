@@ -6,6 +6,10 @@
   "client": [],
   "server": [],
   "mixins": [
+    "EndermanAccessor",
+    "EndermanLookForPlayerGoalMixin",
+    "EnderManMixin",
+    "LivingEntityMixin",
     "PistonMovingBlockEntityMixin"
   ],
   "injectors": {

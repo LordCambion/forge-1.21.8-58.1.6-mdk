@@ -29,22 +29,26 @@ public class ModCreativeModeTabs {
                     ()->CreativeModeTab.builder().icon(()-> new ItemStack(ModItems.CHISEL.get()))
                             .title(Component.translatable("creativetab.mod3rnmod.tools"))
                             .displayItems((pParameters, pOutput) -> {
+                                pOutput.accept((ModItems.CHISEL.get()));
+
                                 pOutput.accept((ModItems.ARKADIUM_PICKAXE.get()));
                                 pOutput.accept((ModItems.ARKADIUM_AXE.get()));
                                 pOutput.accept((ModItems.ARKADIUM_SHOVEL.get()));
                                 pOutput.accept((ModItems.ARKADIUM_HOE.get()));
+                                pOutput.accept((ModItems.ARKADIUM_SWORD.get()));
+
                                 pOutput.accept((ModItems.ARKADIUM_HELMET.get()));
                                 pOutput.accept((ModItems.ARKADIUM_CHESTPLATE.get()));
                                 pOutput.accept((ModItems.ARKADIUM_LEGGINGS.get()));
                                 pOutput.accept((ModItems.ARKADIUM_BOOTS.get()));
+                                pOutput.accept((ModItems.ARKADIUM_HORSE_ARMOR.get()));
+
                                 pOutput.accept((ModItems.ENDER_HELMET.get()));
                                 pOutput.accept((ModItems.ENDER_CHESTPLATE.get()));
                                 pOutput.accept((ModItems.ENDER_LEGGINGS.get()));
                                 pOutput.accept((ModItems.ENDER_BOOTS.get()));
 
                                 pOutput.accept((ModItems.ARKADIUM_HAMMER.get()));
-                                pOutput.accept((ModItems.ARKADIUM_SWORD.get()));
-                                pOutput.accept((ModItems.CHISEL.get()));
                                 pOutput.accept((ModItems.GOLDEN_HAMMER.get()));
                                 pOutput.accept((ModItems.IRON_HAMMER.get()));
                                 pOutput.accept((ModItems.DIAMOND_HAMMER.get()));
