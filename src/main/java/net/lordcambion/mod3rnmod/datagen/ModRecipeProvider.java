@@ -42,7 +42,7 @@ public class ModRecipeProvider extends RecipeProvider implements DataProvider {
 
 
         // Tool crafting
-        craftSword(ModItems.ARKADIUM_SWORD.get(), ModItems.ARKADIUM_INGOT.get(), Items.STICK);
+
         craftPickaxe(ModItems.ARKADIUM_PICKAXE.get(), ModItems.ARKADIUM_INGOT.get(), Items.STICK);
         craftAxe(ModItems.ARKADIUM_AXE.get(), ModItems.ARKADIUM_INGOT.get(), Items.STICK);
         craftShovel(ModItems.ARKADIUM_SHOVEL.get(), ModItems.ARKADIUM_INGOT.get(), Items.STICK);
@@ -55,6 +55,29 @@ public class ModRecipeProvider extends RecipeProvider implements DataProvider {
        // craftHammer(ModItems.GOLDEN_HAMMER.get(), Items.GOLD_INGOT, Items.STICK);
         this.netheriteSmithing(ModItems.DIAMOND_HAMMER.get(),RecipeCategory.TOOLS, ModItems.NETHERITE_HAMMER.get());
 
+        //weapon crafting
+
+        craftSword(ModItems.ARKADIUM_SWORD.get(), ModItems.ARKADIUM_INGOT.get(), Items.STICK);
+
+        this.shaped(RecipeCategory.COMBAT,ModItems.ENDER_BOW.get())
+                .pattern(" ES")
+                .pattern("I S")
+                .pattern(" ES")
+                .define('I', Items.IRON_INGOT)
+                .define('S', Items.STRING)
+                .define('E', Items.ENDER_PEARL)
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .unlockedBy(getHasName(Items.STRING), has(Items.STRING))
+                .unlockedBy(getHasName(Items.ENDER_PEARL), has(Items.ENDER_PEARL))
+                .save(this.output);
+        this.shaped(RecipeCategory.COMBAT,ModItems.ENDER_ARROW.get())
+                .pattern("E")
+                        .pattern("A")
+                .define('A', Items.ARROW)
+                .define('E', Items.ENDER_PEARL)
+                .unlockedBy(getHasName(Items.ARROW), has(Items.ARROW))
+                .unlockedBy(getHasName(Items.ENDER_PEARL), has(Items.ENDER_PEARL))
+                .save(this.output);
         // Armor crafting
         craftHelmet(ModItems.ARKADIUM_HELMET.get(), ModItems.ARKADIUM_INGOT.get());
         craftChestplate(ModItems.ARKADIUM_CHESTPLATE.get(), ModItems.ARKADIUM_INGOT.get());
@@ -171,6 +194,7 @@ public class ModRecipeProvider extends RecipeProvider implements DataProvider {
                 .unlockedBy(getHasName(material), has(material))
                 .save(this.output);
     }
+
 
     /**
      * Craft a pickaxe

@@ -2,11 +2,17 @@ package net.lordcambion.mod3rnmod;
 
 import com.mojang.logging.LogUtils;
 import net.lordcambion.mod3rnmod.block.ModBlocks;
+import net.lordcambion.mod3rnmod.client.renderer.entity.EnderArrowRenderer;
 import net.lordcambion.mod3rnmod.component.ModDataComponentTypes;
+import net.lordcambion.mod3rnmod.entity.projectile.EnderArrowEntity;
+import net.lordcambion.mod3rnmod.init.ModEntityTypes;
 import net.lordcambion.mod3rnmod.item.ModCreativeModeTabs;
 import net.lordcambion.mod3rnmod.item.ModItems;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -17,72 +23,65 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import org.slf4j.Logger;
 
-// The value here should match an entry in the META-INF/mods.toml file
+
 @Mod(Mod3rnMod.MOD_ID)
 public final class Mod3rnMod {
-    // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "mod3rnmod";
-    // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
-
 
     public Mod3rnMod(FMLJavaModLoadingContext context) {
         var modBusGroup = context.getModBusGroup();
 
-        // Register the commonSetup method for modloading
-
         FMLCommonSetupEvent.getBus(modBusGroup).addListener(this::commonSetup);
 
         ModCreativeModeTabs.register(modBusGroup);
-
-
         ModItems.register(modBusGroup);
         ModBlocks.register(modBusGroup);
         ModDataComponentTypes.register(modBusGroup);
-        //Blocks.BEDROCK.properties().strength(1.0F, 1.0F);
-        // Register the item to a creative tab
-        BuildCreativeModeTabContentsEvent.getBus(modBusGroup).addListener(Mod3rnMod::addCreative);
+        ModEntityTypes.ENTITY_TYPES.register(modBusGroup);
 
-        // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
+        BuildCreativeModeTabContentsEvent.getBus(modBusGroup).addListener(Mod3rnMod::addCreative);
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
 
-
     }
 
-    // Add the example block item to the building blocks tab
     private static void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if(event.getTabKey()== CreativeModeTabs.INGREDIENTS){
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){
             event.accept(ModItems.ARKADIUM_INGOT.get());
             event.accept(ModItems.RAW_ARKADIUM.get());
             event.accept(ModItems.PYRESTONE.get());
         }
-        if(event.getTabKey()==CreativeModeTabs.BUILDING_BLOCKS){
+        if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS){
             event.accept(ModBlocks.ARKADIUM_BLOCK.get());
-
         }
-        if(event.getTabKey()==CreativeModeTabs.REDSTONE_BLOCKS){
+        if(event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS){
             event.accept(ModBlocks.GLUE_BLOCK.get());
-
         }
-        if(event.getTabKey()==CreativeModeTabs.FOOD_AND_DRINKS){
+        if(event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS){
             event.accept(ModItems.POOP.get());
-
         }
-        if(event.getTabKey()==CreativeModeTabs.NATURAL_BLOCKS){
+        if(event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS){
             event.accept(ModBlocks.ARKADIUM_ORE.get());
             event.accept(ModBlocks.ARKADIUM_DEEPSLATE_ORE.get());
         }
     }
 
-
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @Mod.EventBusSubscriber(modid = MOD_ID, value = Dist.CLIENT)
+    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
+
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            // Questo è opzionale, puoi rimuoverlo se vuoi
+
+        }
+
+        @SubscribeEvent
+        public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+            // Registra il renderer per EnderArrowEntity
+            event.registerEntityRenderer(ModEntityTypes.ENDER_ARROW.get(), EnderArrowRenderer::new);
 
         }
     }

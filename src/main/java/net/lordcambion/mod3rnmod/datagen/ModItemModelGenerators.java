@@ -9,6 +9,8 @@ import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.item.BlockModelWrapper;
 import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.client.renderer.item.RangeSelectItemModel;
+import net.minecraft.client.renderer.item.properties.numeric.UseDuration;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
@@ -49,6 +51,7 @@ public class ModItemModelGenerators extends ItemModelGenerators {
         generateDamageableItem(ModItems.CHISEL.get(), 0.5f);
         //horse armor
 
+        generateBow(ModItems.ENDER_BOW.get());
         generateFlatItem(ModItems.ARKADIUM_HORSE_ARMOR.get(),ModelTemplates.FLAT_ITEM);
 
         //arkadium
@@ -69,7 +72,7 @@ public class ModItemModelGenerators extends ItemModelGenerators {
         generateTrimmableItem(ModItems.ENDER_LEGGINGS.get(), ModEquipmentAssets.ENDER, TRIM_PREFIX_HELMET, false);
         generateTrimmableItem(ModItems.ENDER_BOOTS.get(), ModEquipmentAssets.ENDER, TRIM_PREFIX_HELMET, false);
 
-
+        generateFlatItem(ModItems.ENDER_ARROW.get(),ModelTemplates.FLAT_ITEM);
         //hammers
         generateFlatItem(ModItems.ARKADIUM_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         generateFlatItem(ModItems.IRON_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
@@ -146,7 +149,42 @@ public class ModItemModelGenerators extends ItemModelGenerators {
         this.itemModelOutput.accept(item, dispatchModel);
     }
 
+    protected void generateBow(Item pBowItem) {
+        ResourceLocation itemLocation = BuiltInRegistries.ITEM.getKey(pBowItem);
+        ResourceLocation modelLocation = ResourceLocation.fromNamespaceAndPath(
+                itemLocation.getNamespace(),
+                "item/" + itemLocation.getPath()
+        );
 
+        // 1. Crea il file del MODELLO in models/item/ender_bow.json
+        ModelTemplates.BOW.create(
+                modelLocation,
+                TextureMapping.layer0(pBowItem),
+                this.modelOutput
+        );
+
+        // 2. Genera i modelli di caricamento
+        ItemModel.Unbaked itemmodel$unbaked = ItemModelUtils.plainModel(modelLocation);
+        ItemModel.Unbaked itemmodel$unbaked1 = ItemModelUtils.plainModel(this.createFlatItemModel(pBowItem, "_pulling_0", ModelTemplates.BOW));
+        ItemModel.Unbaked itemmodel$unbaked2 = ItemModelUtils.plainModel(this.createFlatItemModel(pBowItem, "_pulling_1", ModelTemplates.BOW));
+        ItemModel.Unbaked itemmodel$unbaked3 = ItemModelUtils.plainModel(this.createFlatItemModel(pBowItem, "_pulling_2", ModelTemplates.BOW));
+
+        // 3. Crea il file dell'ITEM in items/ender_bow.json con le condizioni
+        this.itemModelOutput.accept(
+                pBowItem,
+                ItemModelUtils.conditional(
+                        ItemModelUtils.isUsingItem(),
+                        ItemModelUtils.rangeSelect(
+                                new UseDuration(false),
+                                0.05F,
+                                itemmodel$unbaked1,
+                                ItemModelUtils.override(itemmodel$unbaked2, 0.65F),
+                                ItemModelUtils.override(itemmodel$unbaked3, 0.9F)
+                        ),
+                        itemmodel$unbaked
+                )
+        );
+    }
 
 
 

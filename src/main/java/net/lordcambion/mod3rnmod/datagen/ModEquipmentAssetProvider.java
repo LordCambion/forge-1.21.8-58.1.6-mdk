@@ -26,8 +26,7 @@ public class ModEquipmentAssetProvider implements DataProvider {
     public CompletableFuture<?> run(CachedOutput cache) {
         return CompletableFuture.allOf(
                 generateEquipmentAsset(cache, ModEquipmentAssets.ARKADIUM, "arkadium"),
-                generateEquipmentAsset(cache, ModEquipmentAssets.ENDER, "ender"),
-                generateHorseEquipmentAsset(cache,ModEquipmentAssets.ARKADIUM,"arkadium")
+                generateEquipmentAsset(cache, ModEquipmentAssets.ENDER, "ender")
 
         );
     }
@@ -49,6 +48,13 @@ public class ModEquipmentAssetProvider implements DataProvider {
         leggingsLayer.addProperty("texture", Mod3rnMod.MOD_ID + ":" + textureName);
         leggingsArray.add(leggingsLayer);
         layers.add("humanoid_leggings", leggingsArray);
+
+        JsonArray horseArray = new JsonArray();
+        JsonObject horseLayer = new JsonObject();
+        horseLayer.addProperty("texture", Mod3rnMod.MOD_ID + ":" + textureName);
+        horseArray.add(horseLayer);
+        layers.add("horse_body", horseArray);
+
 
         root.add("layers", layers);
 

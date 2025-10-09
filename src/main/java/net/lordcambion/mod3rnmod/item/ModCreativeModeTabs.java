@@ -35,7 +35,24 @@ public class ModCreativeModeTabs {
                                 pOutput.accept((ModItems.ARKADIUM_AXE.get()));
                                 pOutput.accept((ModItems.ARKADIUM_SHOVEL.get()));
                                 pOutput.accept((ModItems.ARKADIUM_HOE.get()));
+
+
+                                pOutput.accept((ModItems.ARKADIUM_HAMMER.get()));
+                                pOutput.accept((ModItems.GOLDEN_HAMMER.get()));
+                                pOutput.accept((ModItems.IRON_HAMMER.get()));
+                                pOutput.accept((ModItems.DIAMOND_HAMMER.get()));
+                                pOutput.accept((ModItems.NETHERITE_HAMMER.get()));
+                            }).build());
+
+    public static final RegistryObject<CreativeModeTab> COMBAT_TAB =
+            CREATIVE_MODE_TABS.register("combat_tab",
+                    ()->CreativeModeTab.builder().icon(()-> new ItemStack(ModItems.ARKADIUM_SWORD.get()))
+                            .title(Component.translatable("creativetab.mod3rnmod.combat"))
+                            .displayItems((pParameters, pOutput) -> {
                                 pOutput.accept((ModItems.ARKADIUM_SWORD.get()));
+
+                                pOutput.accept((ModItems.ENDER_BOW.get()));
+                                pOutput.accept((ModItems.ENDER_ARROW.get()));
 
                                 pOutput.accept((ModItems.ARKADIUM_HELMET.get()));
                                 pOutput.accept((ModItems.ARKADIUM_CHESTPLATE.get()));
@@ -48,11 +65,13 @@ public class ModCreativeModeTabs {
                                 pOutput.accept((ModItems.ENDER_LEGGINGS.get()));
                                 pOutput.accept((ModItems.ENDER_BOOTS.get()));
 
+
                                 pOutput.accept((ModItems.ARKADIUM_HAMMER.get()));
                                 pOutput.accept((ModItems.GOLDEN_HAMMER.get()));
                                 pOutput.accept((ModItems.IRON_HAMMER.get()));
                                 pOutput.accept((ModItems.DIAMOND_HAMMER.get()));
                                 pOutput.accept((ModItems.NETHERITE_HAMMER.get()));
+
                             }).build());
 
 

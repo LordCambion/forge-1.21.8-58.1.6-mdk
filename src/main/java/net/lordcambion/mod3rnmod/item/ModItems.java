@@ -1,6 +1,8 @@
 package net.lordcambion.mod3rnmod.item;
 
 import net.lordcambion.mod3rnmod.Mod3rnMod;
+import net.lordcambion.mod3rnmod.item.custom.Arrow.EnderArrowItem;
+import net.lordcambion.mod3rnmod.item.custom.Bow.EnderBowItem;
 import net.lordcambion.mod3rnmod.item.custom.Chisel.ChiselItem;
 import net.lordcambion.mod3rnmod.item.custom.FuelItem;
 import net.lordcambion.mod3rnmod.item.custom.Hammer.HammerItem;
@@ -186,9 +188,18 @@ public static final RegistryObject<Item> ARKADIUM_AXE= ITEMS.register("arkadium_
                     .component(DataComponents.ENCHANTABLE,new Enchantable(15))
                     .setId(ITEMS.key("netherite_hammer"))));
 
+    //bow
+    public static  final RegistryObject<Item> ENDER_BOW =ITEMS.register("ender_bow",
+            ()-> new EnderBowItem(new Item.Properties()
+                    .durability(500)
+                    .enchantable(1)
+                    .setId(ITEMS.key("ender_bow"))));
 
+    //projectiles
 
-
+    public static  final RegistryObject<Item> ENDER_ARROW =ITEMS.register("ender_arrow",
+            ()-> new EnderArrowItem(new Item.Properties()
+                    .setId(ITEMS.key("ender_arrow"))));
     //foods
     public static final RegistryObject<Item> POOP = ITEMS.register("poop",
             ()->new Item(new Item.Properties()
