@@ -14,13 +14,16 @@ public record LightningStrikerEnchantmentEffect() implements EnchantmentEntityEf
     public static final  MapCodec<LightningStrikerEnchantmentEffect> CODEC =MapCodec.unit(LightningStrikerEnchantmentEffect::new);
     @Override
     public void apply(ServerLevel pLevel, int pEnchantmentLevel, EnchantedItemInUse pItem, Entity pEntity, Vec3 pOrigin) {
-        if(pEnchantmentLevel==1){
+        for(int i=0;i<pEnchantmentLevel;i++){
             EntityType.LIGHTNING_BOLT.spawn(pLevel,pEntity.getOnPos(), EntitySpawnReason.TRIGGERED);
         }
-        if(pEnchantmentLevel==2){
-            EntityType.LIGHTNING_BOLT.spawn(pLevel,pEntity.getOnPos(), EntitySpawnReason.TRIGGERED);
-            EntityType.LIGHTNING_BOLT.spawn(pLevel,pEntity.getOnPos(), EntitySpawnReason.TRIGGERED);
-        }
+//        if(pEnchantmentLevel==1){
+//            EntityType.LIGHTNING_BOLT.spawn(pLevel,pEntity.getOnPos(), EntitySpawnReason.TRIGGERED);
+//        }
+//        if(pEnchantmentLevel==2){
+//            EntityType.LIGHTNING_BOLT.spawn(pLevel,pEntity.getOnPos(), EntitySpawnReason.TRIGGERED);
+//            EntityType.LIGHTNING_BOLT.spawn(pLevel,pEntity.getOnPos(), EntitySpawnReason.TRIGGERED);
+//        }
     }
 
     @Override

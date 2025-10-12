@@ -25,10 +25,10 @@ public class ModEnchantments {
         register(context,LIGHTNING_STRIKER,Enchantment.enchantment(Enchantment.definition(
                 items.getOrThrow(ModTags.Items.ENCHANTABLE_HAMMER),
                 items.getOrThrow(ModTags.Items.ENCHANTABLE_HAMMER),
-                5,2,
-                Enchantment.dynamicCost(5,8),
+                3,3,
                 Enchantment.dynamicCost(25,8),
-                2,
+                Enchantment.dynamicCost(55,8),
+                3,
                 EquipmentSlotGroup.MAINHAND))
                 .exclusiveWith(enchantments.getOrThrow(EnchantmentTags.DAMAGE_EXCLUSIVE))
                 .withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER,
