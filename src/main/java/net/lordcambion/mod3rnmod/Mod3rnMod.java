@@ -4,10 +4,13 @@ import com.mojang.logging.LogUtils;
 import net.lordcambion.mod3rnmod.block.ModBlocks;
 import net.lordcambion.mod3rnmod.client.renderer.entity.EnderArrowRenderer;
 import net.lordcambion.mod3rnmod.component.ModDataComponentTypes;
+import net.lordcambion.mod3rnmod.effect.ModEffects;
 import net.lordcambion.mod3rnmod.entity.projectile.EnderArrowEntity;
 import net.lordcambion.mod3rnmod.init.ModEntityTypes;
 import net.lordcambion.mod3rnmod.item.ModCreativeModeTabs;
 import net.lordcambion.mod3rnmod.item.ModItems;
+import net.lordcambion.mod3rnmod.potion.ModPotions;
+import net.lordcambion.mod3rnmod.sound.ModSound;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -38,7 +41,10 @@ public final class Mod3rnMod {
         ModItems.register(modBusGroup);
         ModBlocks.register(modBusGroup);
         ModDataComponentTypes.register(modBusGroup);
-        ModEntityTypes.ENTITY_TYPES.register(modBusGroup);
+        ModSound.register(modBusGroup);
+        ModEffects.register(modBusGroup);
+        ModPotions.register(modBusGroup);
+        ModEntityTypes.register(modBusGroup);
 
         BuildCreativeModeTabContentsEvent.getBus(modBusGroup).addListener(Mod3rnMod::addCreative);
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);

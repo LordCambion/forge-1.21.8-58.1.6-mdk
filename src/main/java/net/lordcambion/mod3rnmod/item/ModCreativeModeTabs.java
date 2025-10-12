@@ -90,6 +90,9 @@ public class ModCreativeModeTabs {
                             .displayItems((pParameters, pOutput) -> {
                                 pOutput.accept((ModItems.GLUE_BOTTLE.get()));
                                 pOutput.accept((ModItems.PYRESTONE.get()));
+                                pOutput.accept(ModItems.CRYSIS_DISC.get());
+                                pOutput.accept(ModItems.DYNAMITE_DISC.get());
+                                pOutput.accept(ModItems.PANICDOX_DISC.get());
                             }).build());
 
      public static final RegistryObject<CreativeModeTab> BLOCKS_TAB =

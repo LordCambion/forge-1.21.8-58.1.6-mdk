@@ -8,6 +8,7 @@ import net.lordcambion.mod3rnmod.item.custom.FuelItem;
 import net.lordcambion.mod3rnmod.item.custom.Hammer.HammerItem;
 import net.lordcambion.mod3rnmod.item.custom.Helmet.EnderHelmetItem;
 import net.lordcambion.mod3rnmod.item.custom.Tools.*;
+import net.lordcambion.mod3rnmod.sound.ModSound;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -200,6 +201,20 @@ public static final RegistryObject<Item> ARKADIUM_AXE= ITEMS.register("arkadium_
     public static  final RegistryObject<Item> ENDER_ARROW =ITEMS.register("ender_arrow",
             ()-> new EnderArrowItem(new Item.Properties()
                     .setId(ITEMS.key("ender_arrow"))));
+    //discs
+
+    public static final RegistryObject<Item>CRYSIS_DISC=ITEMS.register("crysis_music_disc",
+            ()-> new Item(new Item.Properties().rarity(Rarity.RARE).jukeboxPlayable(ModSound.CRYSIS_KEY).stacksTo(1)
+                    .setId(ITEMS.key("crysis_music_disc"))));
+
+    public static final RegistryObject<Item>DYNAMITE_DISC=ITEMS.register("dynamite_music_disc",
+            ()-> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).jukeboxPlayable(ModSound.DYNAMITE_KEY).stacksTo(1)
+                    .setId(ITEMS.key("dynamite_music_disc"))));
+
+    public static final RegistryObject<Item>PANICDOX_DISC=ITEMS.register("panicdox_music_disc",
+            ()-> new Item(new Item.Properties().rarity(Rarity.EPIC).jukeboxPlayable(ModSound.PANICDOX_KEY).stacksTo(1)
+                    .setId(ITEMS.key("panicdox_music_disc"))));
+
     //foods
     public static final RegistryObject<Item> POOP = ITEMS.register("poop",
             ()->new Item(new Item.Properties()

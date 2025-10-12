@@ -75,23 +75,54 @@ public class EnderArrowEntity extends Arrow {
             this.discard(); // Rimuovi la freccia dopo il teletrasporto
         }
     }
+//    private void teleportEntityRandomly(LivingEntity entity) {
+//        if (entity.level() instanceof ServerLevel serverLevel) {
+//            double range = 8.0D; // Range del teletrasporto
+//            double x = entity.getX() + (entity.getRandom().nextDouble() - 0.5D) * range * 2;
+//            double y = entity.getY() + (entity.getRandom().nextInt(16) - 8);
+//            double z = entity.getZ() + (entity.getRandom().nextDouble() - 0.5D) * range * 2;
+//
+//            // Effetti sonori e particelle
+//            entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(),
+//                    SoundEvents.ENDERMAN_TELEPORT, SoundSource.NEUTRAL, 1.0F, 1.0F);
+//
+//            entity.teleportTo(x, y, z);
+//
+//            entity.level().playSound(null, x, y, z,
+//                    SoundEvents.ENDERMAN_TELEPORT, SoundSource.NEUTRAL, 1.0F, 1.0F);
+//        }
+//    }
+
     private void teleportEntityRandomly(LivingEntity entity) {
         if (entity.level() instanceof ServerLevel serverLevel) {
             double range = 8.0D; // Range del teletrasporto
-            double x = entity.getX() + (entity.getRandom().nextDouble() - 0.5D) * range * 2;
-            double y = entity.getY() + (entity.getRandom().nextInt(16) - 8);
-            double z = entity.getZ() + (entity.getRandom().nextDouble() - 0.5D) * range * 2;
+            double randomX = entity.getX() + (entity.getRandom().nextDouble() - 0.5D) * range * 2;
+            double randomZ = entity.getZ() + (entity.getRandom().nextDouble() - 0.5D) * range * 2;
 
-            // Effetti sonori e particelle
+            // Trova la posizione y più alta e sicura in base alle coordinate X e Z casuali.
+            // Questo previene il teletrasporto sottoterra.
+            double safeY = serverLevel.getHeight(
+                    net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING,
+                    (int) randomX,
+                    (int) randomZ
+            );
+
+            // Applica un piccolo offset in Y per assicurarsi che l'entità sia sul blocco e non ci sia collisione immediata.
+            double targetY = safeY + 0.1D;
+
+            // Effetti sonori e particelle PRIMA del teletrasporto
             entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(),
                     SoundEvents.ENDERMAN_TELEPORT, SoundSource.NEUTRAL, 1.0F, 1.0F);
 
-            entity.teleportTo(x, y, z);
+            // Teletrasporta alla nuova posizione sicura
+            entity.teleportTo(randomX, targetY, randomZ);
 
-            entity.level().playSound(null, x, y, z,
+            // Effetti sonori DOPO il teletrasporto
+            entity.level().playSound(null, randomX, targetY, randomZ,
                     SoundEvents.ENDERMAN_TELEPORT, SoundSource.NEUTRAL, 1.0F, 1.0F);
         }
     }
+
 
     private void teleportEntityToArrow(LivingEntity entity) {
         if (entity.level() instanceof ServerLevel) {

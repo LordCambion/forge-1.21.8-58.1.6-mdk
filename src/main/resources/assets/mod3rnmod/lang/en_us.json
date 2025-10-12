@@ -70,7 +70,31 @@
 
   "tooltip.mod3rnmod.glue_block": "This block is §2STICKY§r",
   "tooltip.mod3rnmod.chisel": "This Item changes certain Blocks",
-  "tooltip.mod3rnmod.poop": "Mmh.. §5Yummy§r!"
+  "tooltip.mod3rnmod.poop": "Mmh.. §5Yummy§r!",
+
+
+  "item.mod3rnmod.crysis_music_disc": "crysis",
+  "item.mod3rnmod.crysis_music_disc.desc": "I.C.U. - Crysis (CC0)",
+
+  "item.mod3rnmod.dynamite_music_disc": "dynamite",
+  "item.mod3rnmod.dynamite_music_disc.desc": "Mike Ward - Dynamite (CC0)",
+
+  "item.mod3rnmod.panicdox_music_disc": "5",
+  "item.mod3rnmod.panicdox_music_disc.desc": "PANiCDOX - 5 (CC0)",
+
+  "sounds.mod3rnmod.poop": "\uD83D\uDCA9",
+  "sounds.mod3rnmod.chisel_use": "Carving stone",
+
+
+
+  "effect.mod3rnmod.slimey": "Slimey",
+  "item.minecraft.potion.effect.mod3rnmod_slimey_potion": "Potion of Slimey",
+  "item.minecraft.splash_potion.effect.mod3rnmod_slimey_potion": "Splash Potion of Slimey",
+  "item.minecraft.lingering_potion.effect.mod3rnmod_slimey_potion": "Lingering Potion of Slimey",
+
+  "painting.mod3rnmod.saw_them.title": "Saw Them",
+  "painting.mod3rnmod.saw_them.author": "NanoAttack"
+
 
 
 }

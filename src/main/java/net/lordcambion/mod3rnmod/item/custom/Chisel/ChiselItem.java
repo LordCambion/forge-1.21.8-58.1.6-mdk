@@ -1,5 +1,6 @@
 package net.lordcambion.mod3rnmod.item.custom.Chisel;
 
+import net.lordcambion.mod3rnmod.sound.ModSound;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -59,7 +60,7 @@ public class ChiselItem extends Item {
                         ((ServerPlayer) pContext.getPlayer()),
                         item -> pContext.getPlayer().onEquippedItemBroken(item, EquipmentSlot.MAINHAND));
 
-                level.playSound(null,pContext.getClickedPos(), SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS);
+                level.playSound(null,pContext.getClickedPos(), ModSound.CHISEL_USE.get(), SoundSource.BLOCKS);
 
             }
         }

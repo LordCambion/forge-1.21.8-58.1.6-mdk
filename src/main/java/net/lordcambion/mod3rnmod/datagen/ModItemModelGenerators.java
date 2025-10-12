@@ -79,7 +79,10 @@ public class ModItemModelGenerators extends ItemModelGenerators {
         generateFlatItem(ModItems.GOLDEN_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         generateFlatItem(ModItems.DIAMOND_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         generateFlatItem(ModItems.NETHERITE_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-
+        //discs
+        generateFlatItem(ModItems.CRYSIS_DISC.get(), ModelTemplates.MUSIC_DISC);
+        generateFlatItem(ModItems.DYNAMITE_DISC.get(), ModelTemplates.MUSIC_DISC);
+        generateFlatItem(ModItems.PANICDOX_DISC.get(), ModelTemplates.MUSIC_DISC);
 
         if (this.itemModelOutput instanceof ModModelProvider.ModItemInfoCollector collector)
             collector.generateDefaultBlockModels();

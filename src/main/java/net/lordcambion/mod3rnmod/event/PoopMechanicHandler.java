@@ -2,6 +2,7 @@ package net.lordcambion.mod3rnmod.event;
 
 import net.lordcambion.mod3rnmod.Mod3rnMod;
 import net.lordcambion.mod3rnmod.item.ModItems;
+import net.lordcambion.mod3rnmod.sound.ModSound;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -78,7 +79,7 @@ public class PoopMechanicHandler {
                 player.level().playSound(
                         null, // null = tutti sentono
                         player.getX(), player.getY(), player.getZ(), // posizione
-                        SoundEvents.SLIME_HURT, // suono
+                        ModSound.POOP.get(), // suono
                         net.minecraft.sounds.SoundSource.PLAYERS, // categoria suono
                         1.0f, // volume
                         1.0f);  // pitch
