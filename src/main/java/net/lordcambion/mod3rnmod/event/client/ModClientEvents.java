@@ -80,7 +80,8 @@ public class ModClientEvents {
     public  static void onBrewingRecipeRegsiter(BrewingRecipeRegisterEvent event){
         PotionBrewing.Builder builder= event.getBuilder();
 
-        builder.addMix(Potions.AWKWARD, Items.SLIME_BALL, ModPotions.SLIMEY_POTION.getHolder().get());
+        builder.addMix(Potions.AWKWARD, Items.SLIME_BALL, ModPotions.BOUNCING_POTION.getHolder().get());
+        builder.addMix(Potions.AWKWARD, Items.FERMENTED_SPIDER_EYE, ModPotions.CLIMBING_POTION.getHolder().get());
     }
 
 

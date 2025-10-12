@@ -1,0 +1,14 @@
+
+{
+  "asset_id": "mod3rnmod:eden",
+  "author": {
+    "color": "gray",
+    "translate": "painting.mod3rnmod.eden.author"
+  },
+  "height": 3,
+  "title": {
+    "color": "yellow",
+    "translate": "painting.mod3rnmod.eden.title"
+  },
+  "width": 2
+}

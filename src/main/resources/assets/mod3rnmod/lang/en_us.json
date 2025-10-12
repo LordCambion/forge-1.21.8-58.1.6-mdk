@@ -87,13 +87,22 @@
 
 
 
-  "effect.mod3rnmod.slimey": "Slimey",
-  "item.minecraft.potion.effect.mod3rnmod_slimey_potion": "Potion of Slimey",
-  "item.minecraft.splash_potion.effect.mod3rnmod_slimey_potion": "Splash Potion of Slimey",
-  "item.minecraft.lingering_potion.effect.mod3rnmod_slimey_potion": "Lingering Potion of Slimey",
+  "effect.mod3rnmod.bounce": "Bouncing",
+  "item.minecraft.potion.effect.mod3rnmod_bounce_potion": "Potion of Bouncing",
+  "item.minecraft.splash_potion.effect.mod3rnmod_bounce_potion": "Splash Potion of Bouncing",
+  "item.minecraft.lingering_potion.effect.mod3rnmod_bounce_potion": "Lingering Potion of Bouncing",
 
-  "painting.mod3rnmod.saw_them.title": "Saw Them",
-  "painting.mod3rnmod.saw_them.author": "NanoAttack"
+  "effect.mod3rnmod.climb": "Climbing",
+  "item.minecraft.potion.effect.mod3rnmod_climbing_potion": "Potion of Climbing",
+  "item.minecraft.splash_potion.effect.mod3rnmod_climbing_potion": "Splash Potion of Climbing",
+  "item.minecraft.lingering_potion.effect.mod3rnmod_climbing_potion": "Lingering Potion of Climbing",
+
+  "painting.mod3rnmod.creation.title": "The Creation",
+  "painting.mod3rnmod.creation.author": "Lord Cambion",
+  "painting.mod3rnmod.adam.title": "The Adam",
+  "painting.mod3rnmod.adam.author": "Lord Cambion",
+  "painting.mod3rnmod.eden.title": "Eden",
+  "painting.mod3rnmod.eden.author": "Lord Cambion"
 
 
 

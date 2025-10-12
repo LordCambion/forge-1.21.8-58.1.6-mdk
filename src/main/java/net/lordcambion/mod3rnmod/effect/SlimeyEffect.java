@@ -58,25 +58,7 @@ public class SlimeyEffect extends MobEffect {
         // Aggiorna lo stato per il prossimo tick
         wasInAir.put(entityId, !entity.onGround());
 
-        // Effetto arrampicata sui muri
-        if (entity.horizontalCollision && !entity.onGround()) {
-            // aumento base verso l'alto, scala leggermente con l'amplifier
-            double climbSpeed = 0.2D + (0.05D * amplifier);
 
-            // se sta già cadendo, annulla la velocità negativa per evitare "scatti" verso il basso
-            if (motion.y < 0) {
-                motion = new Vec3(motion.x, 0.0D, motion.z);
-            }
-
-            // applica movimento: leggero smorzamento orizzontale e impulso verticale stabile
-            entity.setDeltaMovement(motion.x * 0.91D, climbSpeed, motion.z * 0.91D);
-
-            // evita danni da caduta e aiuta la sincronizzazione client/server
-            entity.fallDistance = 0.0F;
-            entity.hurtMarked = true;
-
-            return super.applyEffectTick(level, entity, amplifier);
-        }
 
         return super.applyEffectTick(level, entity, amplifier);
     }

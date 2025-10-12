@@ -16,9 +16,15 @@ public class ModEffects {
     public  static  final DeferredRegister<MobEffect> MOB_EFFECTS =
             DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, Mod3rnMod.MOD_ID);
 
-    public static final RegistryObject<MobEffect> SLIMEY_EFFECT = MOB_EFFECTS.register("slimey",
+    public static final RegistryObject<MobEffect> BOUNCE_EFFECT = MOB_EFFECTS.register("bounce",
             () -> new SlimeyEffect(MobEffectCategory.NEUTRAL, 0x36ebab)
-                    .addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(Mod3rnMod.MOD_ID, "slimey"),
+                    .addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(Mod3rnMod.MOD_ID, "bounce"),
+                            -0.25f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                .addAttributeModifier(Attributes.FALL_DAMAGE_MULTIPLIER, ResourceLocation.fromNamespaceAndPath(Mod3rnMod.MOD_ID, "bounce"),
+                            -1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+    public static final RegistryObject<MobEffect> CLIMB_EFFECT = MOB_EFFECTS.register("climb",
+            () -> new ClimbingEffect(MobEffectCategory.NEUTRAL, 000000)
+                    .addAttributeModifier(Attributes.FALL_DAMAGE_MULTIPLIER, ResourceLocation.fromNamespaceAndPath(Mod3rnMod.MOD_ID, "climb"),
                             -0.25f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 
     public  static  void register(BusGroup eventBus){
