@@ -2,6 +2,7 @@ package net.lordcambion.mod3rnmod.datagen;
 
 import net.lordcambion.mod3rnmod.Mod3rnMod;
 import net.lordcambion.mod3rnmod.item.ModItems;
+import net.lordcambion.mod3rnmod.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.VanillaItemTagsProvider;
@@ -152,6 +153,12 @@ public class ModItemTagProvider extends VanillaItemTagsProvider {
                 .add(ModItems.ENDER_LEGGINGS.get())
                 .add(ModItems.ENDER_BOOTS.get());
 
+        tag(ModTags.Items.ENCHANTABLE_HAMMER)
+                .add(ModItems.ARKADIUM_HAMMER.get())
+                .add(ModItems.GOLDEN_HAMMER.get())
+                .add(ModItems.IRON_HAMMER.get())
+                .add(ModItems.DIAMOND_HAMMER.get())
+                .add(ModItems.NETHERITE_HAMMER.get());
 
     }
 }

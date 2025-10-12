@@ -24,6 +24,7 @@ public class ModTags {
 
     public static class Items{
         //public static final TagKey<Item> TRANSFORMABLE_ITEMS =createTag("transformable_items");
+        public static final TagKey<Item> ENCHANTABLE_HAMMER =createTag("enchantable_hammer");
         public static final TagKey<Item> ARKADIUM_REPAIR =createTag("arkadium_repair");
         public static final TagKey<Item> DAMAGED =createTag("damaged");
         private static TagKey<Item> createTag(String name){

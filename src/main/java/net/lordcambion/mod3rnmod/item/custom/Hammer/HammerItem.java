@@ -1,6 +1,5 @@
 package net.lordcambion.mod3rnmod.item.custom.Hammer;
 
-import net.lordcambion.mod3rnmod.item.custom.Tools.CustomToolItem;
 import net.lordcambion.mod3rnmod.item.custom.Tools.ModPickaxeItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -54,5 +53,4 @@ public class HammerItem extends ModPickaxeItem {
 
         return positions;
     }
-
 }

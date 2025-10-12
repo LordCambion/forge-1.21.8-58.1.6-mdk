@@ -13,8 +13,10 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
@@ -154,39 +156,44 @@ public static final RegistryObject<Item> ARKADIUM_AXE= ITEMS.register("arkadium_
 
 
     //hammers
-    public static final RegistryObject<Item> ARKADIUM_HAMMER= ITEMS.register("arkadium_hammer",
-            ()->new HammerItem(new Item.Properties()
-                    .pickaxe(ModToolMaterials.ARKADIUM,7,-3.5f)
+    public static final RegistryObject<Item> ARKADIUM_HAMMER = ITEMS.register("arkadium_hammer",
+            () -> new HammerItem(new Item.Properties()
+                    .pickaxe(ModToolMaterials.ARKADIUM, 7, -3.5f)
                     .repairable(ModItems.ARKADIUM_INGOT.get())
-                    .component(DataComponents.ENCHANTABLE,new Enchantable(15))
+                    .component(DataComponents.ENCHANTABLE, new Enchantable(15))
+                    .component(DataComponents.ATTRIBUTE_MODIFIERS, addAttackRangeAttributes("hammer"))
                     .setId(ITEMS.key("arkadium_hammer"))));
 
-    public static final RegistryObject<Item> IRON_HAMMER= ITEMS.register("iron_hammer",
-            ()->new HammerItem(new Item.Properties()
-                    .pickaxe(ToolMaterial.IRON,7,-3.5f)
+    public static final RegistryObject<Item> IRON_HAMMER = ITEMS.register("iron_hammer",
+            () -> new HammerItem(new Item.Properties()
+                    .pickaxe(ToolMaterial.IRON, 7, -3.5f)
                     .repairable(Items.IRON_INGOT)
-                    .component(DataComponents.ENCHANTABLE,new Enchantable(15))
+                    .component(DataComponents.ENCHANTABLE, new Enchantable(15))
+                    .component(DataComponents.ATTRIBUTE_MODIFIERS, addAttackRangeAttributes("hammer"))
                     .setId(ITEMS.key("iron_hammer"))));
 
-    public static final RegistryObject<Item> GOLDEN_HAMMER= ITEMS.register("golden_hammer",
-            ()->new HammerItem(new Item.Properties()
-                    .pickaxe(ToolMaterial.GOLD,7,-3.5f)
+    public static final RegistryObject<Item> GOLDEN_HAMMER = ITEMS.register("golden_hammer",
+            () -> new HammerItem(new Item.Properties()
+                    .pickaxe(ToolMaterial.GOLD, 7, -3.5f)
                     .repairable(Items.GOLD_INGOT)
-                    .component(DataComponents.ENCHANTABLE,new Enchantable(15))
+                    .component(DataComponents.ENCHANTABLE, new Enchantable(15))
+                    .component(DataComponents.ATTRIBUTE_MODIFIERS, addAttackRangeAttributes("hammer"))
                     .setId(ITEMS.key("golden_hammer"))));
 
-    public static final RegistryObject<Item> DIAMOND_HAMMER= ITEMS.register("diamond_hammer",
-            ()->new HammerItem(new Item.Properties()
-                    .pickaxe(ToolMaterial.DIAMOND,7,-3.5f)
+    public static final RegistryObject<Item> DIAMOND_HAMMER = ITEMS.register("diamond_hammer",
+            () -> new HammerItem(new Item.Properties()
+                    .pickaxe(ToolMaterial.DIAMOND, 7, -3.5f)
                     .repairable(Items.DIAMOND)
-                    .component(DataComponents.ENCHANTABLE,new Enchantable(15))
+                    .component(DataComponents.ENCHANTABLE, new Enchantable(15))
+                    .component(DataComponents.ATTRIBUTE_MODIFIERS, addAttackRangeAttributes("hammer"))
                     .setId(ITEMS.key("diamond_hammer"))));
 
-    public static final RegistryObject<Item> NETHERITE_HAMMER= ITEMS.register("netherite_hammer",
-            ()->new HammerItem(new Item.Properties()
-                    .pickaxe(ToolMaterial.NETHERITE,7,-3.5f)
+    public static final RegistryObject<Item> NETHERITE_HAMMER = ITEMS.register("netherite_hammer",
+            () -> new HammerItem(new Item.Properties()
+                    .pickaxe(ToolMaterial.NETHERITE, 7, -3.5f)
                     .repairable(Items.NETHERITE_INGOT)
-                    .component(DataComponents.ENCHANTABLE,new Enchantable(15))
+                    .component(DataComponents.ENCHANTABLE, new Enchantable(15))
+                    .component(DataComponents.ATTRIBUTE_MODIFIERS, addAttackRangeAttributes("hammer"))
                     .setId(ITEMS.key("netherite_hammer"))));
 
     //bow
@@ -233,7 +240,30 @@ public static final RegistryObject<Item> ARKADIUM_AXE= ITEMS.register("arkadium_
                     super.appendHoverText(pStack, pContext, pTooltipDisplay, pTooltipAdder, pFlag);
                 }
             });
+    private static ItemAttributeModifiers addAttackRangeAttributes(String name) {
+        return ItemAttributeModifiers.builder()
+//
+                .add(Attributes.ENTITY_INTERACTION_RANGE,
+                        new AttributeModifier(
+                                ResourceLocation.fromNamespaceAndPath("mod3rnmod", name+"_entity_range"),
+                                2.0, // Aumenta la distanza di attacco
+                                AttributeModifier.Operation.ADD_VALUE
+                        ),
+                        EquipmentSlotGroup.MAINHAND)
+                .build();
+    }
+    private static ItemAttributeModifiers addMiningRangeAttributes(String name) {
+        return ItemAttributeModifiers.builder()
+                .add(Attributes.BLOCK_INTERACTION_RANGE,
+                        new AttributeModifier(
+                                ResourceLocation.fromNamespaceAndPath("mod3rnmod", name+"_block_range"),
+                                2.5, // Aumenta la distanza di mining
+                                AttributeModifier.Operation.ADD_VALUE
+                        ),
+                        EquipmentSlotGroup.MAINHAND)
 
+                .build();
+    }
 
     public static void register(BusGroup eventBus){
         ITEMS.register(eventBus);

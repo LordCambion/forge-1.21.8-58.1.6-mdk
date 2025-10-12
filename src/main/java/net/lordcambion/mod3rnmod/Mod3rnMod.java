@@ -5,6 +5,7 @@ import net.lordcambion.mod3rnmod.block.ModBlocks;
 import net.lordcambion.mod3rnmod.client.renderer.entity.EnderArrowRenderer;
 import net.lordcambion.mod3rnmod.component.ModDataComponentTypes;
 import net.lordcambion.mod3rnmod.effect.ModEffects;
+import net.lordcambion.mod3rnmod.enchantment.ModEnchantmentEffects;
 import net.lordcambion.mod3rnmod.entity.projectile.EnderArrowEntity;
 import net.lordcambion.mod3rnmod.init.ModEntityTypes;
 import net.lordcambion.mod3rnmod.item.ModCreativeModeTabs;
@@ -45,6 +46,7 @@ public final class Mod3rnMod {
         ModEffects.register(modBusGroup);
         ModPotions.register(modBusGroup);
         ModEntityTypes.register(modBusGroup);
+        ModEnchantmentEffects.register(modBusGroup);
 
         BuildCreativeModeTabContentsEvent.getBus(modBusGroup).addListener(Mod3rnMod::addCreative);
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);

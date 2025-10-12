@@ -37,7 +37,8 @@ public class DataGenerators {
 
         generator.addProvider(event.includeServer(),
                 new ModItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
-
+        generator.addProvider(event.includeServer(),
+                new ModDatapackEntries(packOutput,lookupProvider));
         // AGGIUNGI QUESTO - Provider per Equipment Assets (usa includeClient perché va in assets/)
         generator.addProvider(event.includeClient(), new ModEquipmentAssetProvider(packOutput));
     }

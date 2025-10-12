@@ -18,4 +18,5 @@ public abstract class CustomToolItem extends Item {
     public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
         return supportedActions.contains(toolAction);
     }
+
 }
