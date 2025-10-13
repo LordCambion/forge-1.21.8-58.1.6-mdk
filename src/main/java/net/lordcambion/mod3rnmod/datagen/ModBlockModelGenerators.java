@@ -128,6 +128,8 @@ public class ModBlockModelGenerators extends BlockModelGenerators {
 //        createTrivialCube(ModBlocks.BEAN_BLOCK.get());
         createTrivialCube(ModBlocks.ARKADIUM_BLOCK.get());
         createTrivialCube(ModBlocks.ARKADIUM_ORE.get());
+        createTrivialCube(ModBlocks.ARKADIUM_END_ORE.get());
+        createTrivialCube(ModBlocks.ARKADIUM_NETHER_ORE.get());
         createTrivialCube(ModBlocks.ARKADIUM_DEEPSLATE_ORE.get());
         createTrivialCube(ModBlocks.PYRESTONE_ORE.get());
         createTrivialCube(ModBlocks.GLUE_BLOCK.get());

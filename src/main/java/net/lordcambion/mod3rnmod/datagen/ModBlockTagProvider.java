@@ -25,6 +25,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.PYRESTONE_ORE.get())
                 .add(ModBlocks.ARKADIUM_ORE.get())
                 .add(ModBlocks.ARKADIUM_BLOCK.get())
+                .add(ModBlocks.ARKADIUM_END_ORE.get())
+                .add(ModBlocks.ARKADIUM_NETHER_ORE.get())
                 .add(ModBlocks.ARKADIUM_DEEPSLATE_ORE.get())
                 .add(ModBlocks.OBSIDIAN_PRESSURE_PLATE.get())
                 .add(ModBlocks.OBSIDIAN_BUTTON.get())
@@ -34,8 +36,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.PYRESTONE_ORE.get())
                 .add(ModBlocks.ARKADIUM_ORE.get());
+
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.ARKADIUM_DEEPSLATE_ORE.get())
+                .add(ModBlocks.ARKADIUM_END_ORE.get())
+                .add(ModBlocks.ARKADIUM_NETHER_ORE.get())
                 .add(ModBlocks.OBSIDIAN_PRESSURE_PLATE.get())
                 .add(ModBlocks.OBSIDIAN_BUTTON.get())
                 .add(ModBlocks.OBSIDIAN_STAIRS.get())

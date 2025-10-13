@@ -47,6 +47,18 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE).setId(BLOCKS.key("arkadium_ore"))));
 
+    public static final RegistryObject<Block> ARKADIUM_END_ORE =registerBlock("arkadium_end_ore",
+            ()-> new DropExperienceBlock(UniformInt.of(2,4), BlockBehaviour.Properties.of()
+                    .strength(2.5f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE).setId(BLOCKS.key("arkadium_end_ore"))));
+
+    public static final RegistryObject<Block> ARKADIUM_NETHER_ORE =registerBlock("arkadium_nether_ore",
+            ()-> new DropExperienceBlock(UniformInt.of(2,4), BlockBehaviour.Properties.of()
+                    .strength(2.5f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE).setId(BLOCKS.key("arkadium_nether_ore"))));
+
     public static final RegistryObject<Block> PYRESTONE_ORE =registerBlock("pyrestone_ore",
             ()-> new DropExperienceBlock(UniformInt.of(3,5), BlockBehaviour.Properties.of()
                     .strength(3.33f)

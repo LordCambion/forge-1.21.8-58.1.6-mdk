@@ -63,6 +63,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         //ores -minerals
         this.add(ModBlocks.ARKADIUM_ORE.get(),
                 block -> createOreDrop(ModBlocks.ARKADIUM_ORE.get(),ModItems.RAW_ARKADIUM.get()));
+        this.add(ModBlocks.ARKADIUM_END_ORE.get(),
+                block -> createOreDrop(ModBlocks.ARKADIUM_END_ORE.get(),ModItems.RAW_ARKADIUM.get()));
+
+        this.add(ModBlocks.ARKADIUM_NETHER_ORE.get(),
+                block -> createOreDrop(ModBlocks.ARKADIUM_NETHER_ORE.get(),ModItems.RAW_ARKADIUM.get()));
         this.add(ModBlocks.ARKADIUM_DEEPSLATE_ORE.get(),
                 block -> createMultipleOreDrops(ModBlocks.ARKADIUM_DEEPSLATE_ORE.get(),ModItems.RAW_ARKADIUM.get(),1,3));
         this.add(ModBlocks.PYRESTONE_ORE.get(),
