@@ -16,4 +16,11 @@ public class ModConsumablesProperties {
                     )
             )
             .build();
+
+    public static final Consumable TOMATO = Consumables.defaultFood()
+
+            .build();
+    public static final Consumable STRAWBERRY = Consumables.defaultFood()
+            .consumeSeconds(0.4f)
+            .build();
 }

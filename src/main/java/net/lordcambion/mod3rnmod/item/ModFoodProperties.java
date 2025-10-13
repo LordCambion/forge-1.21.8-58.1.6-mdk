@@ -20,6 +20,14 @@ public class ModFoodProperties {
             .alwaysEdible()
             .alwaysEdible()
             .build();
+    public static final FoodProperties TOMATO = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.034f)
+            .build();
+    public static final FoodProperties STRAWBERRY = new FoodProperties.Builder()
+            .nutrition(3)
+            .saturationModifier(0.053f)
+            .build();
 
 
 }

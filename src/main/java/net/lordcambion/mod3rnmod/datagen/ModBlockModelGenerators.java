@@ -3,10 +3,14 @@ package net.lordcambion.mod3rnmod.datagen;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.lordcambion.mod3rnmod.Mod3rnMod;
 import net.lordcambion.mod3rnmod.block.ModBlocks;
 
 import net.lordcambion.mod3rnmod.block.custom.LampBlock;
+import net.lordcambion.mod3rnmod.block.custom.TomatoCropBlock;
+import net.lordcambion.mod3rnmod.item.ModItems;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelOutput;
 import net.minecraft.client.data.models.MultiVariant;
@@ -15,13 +19,17 @@ import net.minecraft.client.data.models.model.*;
 import net.minecraft.core.Direction;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.Half;
-import net.minecraft.world.level.block.state.properties.WallSide;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
+
 
 
 import javax.annotation.Nullable;
@@ -31,6 +39,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class ModBlockModelGenerators extends BlockModelGenerators {
     final List<Block> nonOrientableTrapdoor = ImmutableList.of(Blocks.OAK_TRAPDOOR, Blocks.DARK_OAK_TRAPDOOR, Blocks.IRON_TRAPDOOR);
@@ -123,6 +132,19 @@ public class ModBlockModelGenerators extends BlockModelGenerators {
         createTrivialCube(ModBlocks.PYRESTONE_ORE.get());
         createTrivialCube(ModBlocks.GLUE_BLOCK.get());
         createLamp((LampBlock) ModBlocks.COPPER_LAMP.get());
+
+        createCropBlock(
+                (CropBlock) ModBlocks.TOMATO_CROP.get(),
+                TomatoCropBlock.AGE,  // Passa la proprietà custom
+                0, 1, 2, 3, 4, 5      // 6 stadi (da 0 a 5)
+        );
+
+        createBerryBush(
+                ModBlocks.STRAWBERRY_BUSH.get(),
+                ModItems.STRAWBERRY.get(),
+                BlockStateProperties.AGE_3,
+                0, 1, 2, 3
+        );
         /*
 
         createStairs(ModBlocks.OBSIDIAN_STAIRS.get(), Blocks.OBSIDIAN);
@@ -134,6 +156,8 @@ public class ModBlockModelGenerators extends BlockModelGenerators {
 */
 
     }
+
+
     public class ModBlockFamilyProvider extends BlockFamilyProvider {
         private final TextureMapping mapping;
         private final Map<ModelTemplate, ResourceLocation> models = Maps.newHashMap();
@@ -489,6 +513,73 @@ public class ModBlockModelGenerators extends BlockModelGenerators {
                         .with(createBooleanModelDispatch(LampBlock.LIT, onVariant, offVariant))
         );
     }
+    protected void createCropBlock(CropBlock pCropBlock, int... pAgeToVisualStageMapping) {
+        this.registerSimpleFlatItemModel(pCropBlock.asItem());
 
+        // Usa direttamente BlockStateProperties.AGE_7 come proprietà di default
+        IntegerProperty ageProperty = BlockStateProperties.AGE_7;
+
+        if (ageProperty.getPossibleValues().size() != pAgeToVisualStageMapping.length) {
+            throw new IllegalArgumentException("Age stages mismatch for crop block");
+        }
+
+        Int2ObjectMap<ResourceLocation> int2objectmap = new Int2ObjectOpenHashMap<>();
+
+        this.blockStateOutput.accept(
+                MultiVariantGenerator.dispatch(pCropBlock)
+                        .with(
+                                PropertyDispatch.initial(ageProperty)
+                                        .generate(
+                                                age -> {
+                                                    int visualStage = pAgeToVisualStageMapping[age];
+                                                    return plainVariant(
+                                                            int2objectmap.computeIfAbsent(
+                                                                    visualStage,
+                                                                    stage -> this.createSuffixedVariant(
+                                                                            pCropBlock,
+                                                                            "_stage" + stage,
+                                                                            ModelTemplates.CROP,
+                                                                            TextureMapping::crop
+                                                                    )
+                                                            )
+                                                    );
+                                                }
+                                        )
+                        )
+        );
+    }
+
+    protected void createBerryBush(Block bushBlock, Item fruitItem, IntegerProperty ageProperty, int... stages) {
+        // registra il modello item del frutto
+        this.registerSimpleFlatItemModel(fruitItem);
+
+        // verifica che il numero di stadi corrisponda alla proprietà AGE
+        if (ageProperty.getPossibleValues().size() != stages.length) {
+            throw new IllegalArgumentException("Age stages mismatch for bush block: " + bushBlock);
+        }
+
+        Int2ObjectMap<ResourceLocation> stageModelMap = new Int2ObjectOpenHashMap<>();
+
+        this.blockStateOutput.accept(
+                MultiVariantGenerator.dispatch(bushBlock)
+                        .with(
+                                PropertyDispatch.initial(ageProperty)
+                                        .generate(age -> {
+                                            int visualStage = stages[age];
+                                            return plainVariant(
+                                                    stageModelMap.computeIfAbsent(
+                                                            visualStage,
+                                                            stage -> this.createSuffixedVariant(
+                                                                    bushBlock,
+                                                                    "_stage" + stage,
+                                                                    ModelTemplates.CROSS, // template cross per bush
+                                                                    TextureMapping::cross
+                                                            )
+                                                    )
+                                            );
+                                        })
+                        )
+        );
+    }
 
 }

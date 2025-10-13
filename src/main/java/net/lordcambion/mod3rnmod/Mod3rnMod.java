@@ -12,11 +12,16 @@ import net.lordcambion.mod3rnmod.item.ModCreativeModeTabs;
 import net.lordcambion.mod3rnmod.item.ModItems;
 import net.lordcambion.mod3rnmod.potion.ModPotions;
 import net.lordcambion.mod3rnmod.sound.ModSound;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -35,8 +40,8 @@ public final class Mod3rnMod {
 
     public Mod3rnMod(FMLJavaModLoadingContext context) {
         var modBusGroup = context.getModBusGroup();
-
         FMLCommonSetupEvent.getBus(modBusGroup).addListener(this::commonSetup);
+        //MinecraftForge.EVENT_BUS.register(this);
 
         ModCreativeModeTabs.register(modBusGroup);
         ModItems.register(modBusGroup);
@@ -53,6 +58,14 @@ public final class Mod3rnMod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(()->{
+                ComposterBlock.COMPOSTABLES.put(ModItems.TOMATO.get(),0.4f);
+                ComposterBlock.COMPOSTABLES.put(ModItems.TOMATO_SEEDS.get(),0.15f);
+                ComposterBlock.COMPOSTABLES.put(ModItems.POOP.get(),0.4f);
+                ComposterBlock.COMPOSTABLES.put(ModItems.STRAWBERRY.get(),0.13f);
+
+        }
+        );
 
     }
 
@@ -82,7 +95,10 @@ public final class Mod3rnMod {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            // Questo è opzionale, puoi rimuoverlo se vuoi
+            event.enqueueWork(() -> {
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.TOMATO_CROP.get(), ChunkSectionLayer.CUTOUT);
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.STRAWBERRY_BUSH.get(), ChunkSectionLayer.CUTOUT);
+            });
 
         }
 

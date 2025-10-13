@@ -1,6 +1,7 @@
 package net.lordcambion.mod3rnmod.item;
 
 import net.lordcambion.mod3rnmod.Mod3rnMod;
+import net.lordcambion.mod3rnmod.block.ModBlocks;
 import net.lordcambion.mod3rnmod.item.custom.Arrow.EnderArrowItem;
 import net.lordcambion.mod3rnmod.item.custom.Bow.EnderBowItem;
 import net.lordcambion.mod3rnmod.item.custom.Chisel.ChiselItem;
@@ -240,6 +241,32 @@ public static final RegistryObject<Item> ARKADIUM_AXE= ITEMS.register("arkadium_
                     super.appendHoverText(pStack, pContext, pTooltipDisplay, pTooltipAdder, pFlag);
                 }
             });
+
+
+    public static final RegistryObject<Item> STRAWBERRY = ITEMS.register("strawberry",
+            () -> new BlockItem(
+                    ModBlocks.STRAWBERRY_BUSH.get(), // Riferimento al blocco della pianta
+                    new Item.Properties().useItemDescriptionPrefix()
+                            .food(ModFoodProperties.STRAWBERRY,ModConsumablesProperties.STRAWBERRY)
+                            .setId(ITEMS.key("strawberry")))
+
+    );
+
+    public static final RegistryObject<Item> TOMATO = ITEMS.register("tomato",
+            ()->new Item(new Item.Properties()
+                    .food(ModFoodProperties.TOMATO,ModConsumablesProperties.TOMATO)
+
+                    .setId(ITEMS.key("tomato"))));
+
+    //seeds
+    public static final RegistryObject<Item> TOMATO_SEEDS = ITEMS.register("tomato_seeds",
+            () -> new BlockItem(
+                    ModBlocks.TOMATO_CROP.get(), // Riferimento al blocco della pianta
+                    new Item.Properties().useItemDescriptionPrefix()
+                            .setId(ITEMS.key("tomato_seeds")))
+
+    );
+
     private static ItemAttributeModifiers addAttackRangeAttributes(String name) {
         return ItemAttributeModifiers.builder()
 //

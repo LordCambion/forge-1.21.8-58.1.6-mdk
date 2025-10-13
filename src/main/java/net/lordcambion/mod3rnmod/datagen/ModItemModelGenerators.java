@@ -19,6 +19,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.equipment.EquipmentAssets;
 import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.minecraft.world.item.equipment.trim.TrimMaterials;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty;
 
@@ -84,6 +85,10 @@ public class ModItemModelGenerators extends ItemModelGenerators {
         generateFlatItem(ModItems.DYNAMITE_DISC.get(), ModelTemplates.MUSIC_DISC);
         generateFlatItem(ModItems.PANICDOX_DISC.get(), ModelTemplates.MUSIC_DISC);
 
+
+        //seeds
+        //generateFlatItem(ModItems.TOMATO_SEEDS.get(),ModelTemplates.FLAT_ITEM);
+        generateFlatItem(ModItems.TOMATO.get(),ModelTemplates.FLAT_ITEM);
         if (this.itemModelOutput instanceof ModModelProvider.ModItemInfoCollector collector)
             collector.generateDefaultBlockModels();
 

@@ -4,6 +4,8 @@ import net.lordcambion.mod3rnmod.Mod3rnMod;
 import net.lordcambion.mod3rnmod.block.custom.GlueBlock;
 
 import net.lordcambion.mod3rnmod.block.custom.LampBlock;
+import net.lordcambion.mod3rnmod.block.custom.StrawBerryBushBlock;
+import net.lordcambion.mod3rnmod.block.custom.TomatoCropBlock;
 import net.lordcambion.mod3rnmod.block.custom.nonMovable.*;
 import net.lordcambion.mod3rnmod.item.ModItems;
 import net.minecraft.client.gui.screens.Screen;
@@ -19,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.bus.BusGroup;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -122,6 +125,23 @@ public static final RegistryObject<WallBlock>  OBSIDIAN_WALL =registerBlock("obs
             () -> new LampBlock(BlockBehaviour.Properties.of().strength(2f)
                     .lightLevel(state -> state.getValue(LampBlock.LIT) ? 15 : 0)  // CAMBIA QUI: CLICKED -> LIT
                     .setId(BLOCKS.key("copper_lamp"))));
+
+    //plants
+    public static final RegistryObject<Block> STRAWBERRY_BUSH= BLOCKS.register("strawberry_bush",
+            ()-> new StrawBerryBushBlock(BlockBehaviour.Properties.of()
+                   .mapColor(MapColor.PLANT).randomTicks().noCollission().sound(SoundType.SWEET_BERRY_BUSH).pushReaction(PushReaction.DESTROY)
+                    .setId(BLOCKS.key("strawberry_bush"))));
+
+    public static final RegistryObject<Block> TOMATO_CROP= BLOCKS.register("tomato_crop",
+            ()->new TomatoCropBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.CROP)
+                    .pushReaction(PushReaction.DESTROY)
+                            .setId(BLOCKS.key("tomato_crop"))));
+
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
