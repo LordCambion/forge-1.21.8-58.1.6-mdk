@@ -48,12 +48,16 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.OBSIDIAN_WALL.get());
 
 
-        //tag(BlockTags.FENCES)
-                //.add(ModBlocks.BEAN_FENCE.get());
-       // tag(BlockTags.FENCE_GATES)
-                //.add(ModBlocks.BEAN_FENCE_GATE.get());
+        tag(BlockTags.FENCES)
+                .add(ModBlocks.WALNUT_FENCE.get());
+        tag(BlockTags.FENCE_GATES)
+                .add(ModBlocks.WALNUT_FENCE_GATE.get());
         tag(BlockTags.WALLS)
                 .add(ModBlocks.OBSIDIAN_WALL.get());
+        tag(BlockTags.WOODEN_DOORS)
+                .add(ModBlocks.WALNUT_DOOR.get());
+        tag(BlockTags.WOODEN_TRAPDOORS)
+                .add(ModBlocks.WALNUT_TRAPDOOR.get());
 
         tag(ModTags.Blocks.NOT_STICKY)
                 .add(ModBlocks.OBSIDIAN_PRESSURE_PLATE.get())
@@ -69,5 +73,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.INCORRECT_FOR_ARKADIUM_TOOL)
                 .addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
                 .remove(ModTags.Blocks.NEEDS_ARKADIUM_TOOL);
+
+        this.tag(BlockTags.LOGS_THAT_BURN)
+                .add(ModBlocks.WALNUT_LOG.get())
+                .add(ModBlocks.STRIPPED_WALNUT_LOG.get())
+                .add(ModBlocks.WALNUT_WOOD.get())
+                .add(ModBlocks.STRIPPED_WALNUT_WOOD.get());
     }
 }

@@ -2,19 +2,31 @@ package net.lordcambion.mod3rnmod.worldgen;
 
 import net.lordcambion.mod3rnmod.Mod3rnMod;
 import net.lordcambion.mod3rnmod.block.ModBlocks;
+import net.lordcambion.mod3rnmod.block.custom.StrawBerryBushBlock;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlacer;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
 
@@ -25,6 +37,8 @@ public class ModConfiguredFeatures {
     public  static  final ResourceKey<ConfiguredFeature<?,?>> NETHER_ARKADIUM_ORE_KEY =registerKey("nether_arkadium_ore");
     public  static  final ResourceKey<ConfiguredFeature<?,?>> END_ARKADIUM_ORE_KEY =registerKey("end_arkadium_ore");
     public  static  final ResourceKey<ConfiguredFeature<?,?>> NETHER_PYRESTONE_ORE_KEY =registerKey("nether_pyrestone_ore");
+    public  static  final ResourceKey<ConfiguredFeature<?,?>> WALNUT_TREE_KEY =registerKey("walnut_tree");
+    public  static  final ResourceKey<ConfiguredFeature<?,?>> STRAWBERRY_BUSH_KEY =registerKey("strayberry_bush");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         RuleTest stoneReplaceables = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
@@ -46,6 +60,19 @@ public class ModConfiguredFeatures {
 
         register(context,NETHER_PYRESTONE_ORE_KEY,Feature.ORE,new OreConfiguration(netherrackReplaceables,
                 ModBlocks.PYRESTONE_ORE.get().defaultBlockState(),9));
+
+        register(context,WALNUT_TREE_KEY,Feature.TREE,new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(ModBlocks.WALNUT_LOG.get()),
+                new ForkingTrunkPlacer(4,4,3),
+                BlockStateProvider.simple(ModBlocks.WALNUT_LEAVES.get()),
+                new BlobFoliagePlacer(ConstantInt.of(3),ConstantInt.of(3),3),
+                new TwoLayersFeatureSize(1,0,2)).dirt(BlockStateProvider.simple(Blocks.DIRT)).build());
+
+        register(context,STRAWBERRY_BUSH_KEY,Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,new SimpleBlockConfiguration(
+                        BlockStateProvider.simple(ModBlocks.STRAWBERRY_BUSH.get().defaultBlockState().setValue(StrawBerryBushBlock.AGE,Integer.valueOf(3)))
+                ),List.of(Blocks.GRASS_BLOCK)));
+
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

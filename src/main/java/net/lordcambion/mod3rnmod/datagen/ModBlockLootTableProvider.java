@@ -73,6 +73,25 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.add(ModBlocks.PYRESTONE_ORE.get(),
                 block -> createMultipleOreDrops(ModBlocks.PYRESTONE_ORE.get(),ModItems.PYRESTONE.get(),1,4));
 
+        dropSelf(ModBlocks.WALNUT_PLANKS.get());
+        dropSelf(ModBlocks.WALNUT_SAPLING.get());
+        dropSelf(ModBlocks.WALNUT_WOOD.get());
+        dropSelf(ModBlocks.WALNUT_LOG.get());
+        dropSelf(ModBlocks.STRIPPED_WALNUT_WOOD.get());
+        dropSelf(ModBlocks.STRIPPED_WALNUT_LOG.get());
+        this.add(ModBlocks.WALNUT_LEAVES.get(),block ->
+                createLeavesDrops(block,ModBlocks.WALNUT_SAPLING.get(),NORMAL_LEAVES_SAPLING_CHANCES));
+
+        dropSelf(ModBlocks.WALNUT_FENCE.get());
+        dropSelf(ModBlocks.WALNUT_FENCE_GATE.get());
+        dropSelf(ModBlocks.WALNUT_STAIRS.get());
+        this.add(ModBlocks.WALNUT_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.WALNUT_SLAB.get()));
+        dropSelf(ModBlocks.WALNUT_PRESSURE_PLATE.get());
+        dropSelf(ModBlocks.WALNUT_BUTTON.get());
+        this.add(ModBlocks.WALNUT_DOOR.get(),
+                block -> createDoorTable(ModBlocks.WALNUT_DOOR.get()));
+        dropSelf(ModBlocks.WALNUT_TRAPDOOR.get());
 
         //plants
         //plants LootItemCondition.Builder lootItemConditionBuilder= LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.TOMATO_CROP.get()) .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(TomatoCropBlock.AGE,5)); this.add(ModBlocks.TOMATO_CROP.get(),this.createCropDrops(ModBlocks.TOMATO_CROP.get(), ModItems.TOMATO.get(),ModItems.TOMATO_SEEDS.get(),lootItemConditionBuilder));

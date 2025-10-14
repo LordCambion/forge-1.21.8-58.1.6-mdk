@@ -18,6 +18,8 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier>ADD_NETHER_ARKADIUM_ORE =registerKey("add_nether_arkadium_ore");
     public static final ResourceKey<BiomeModifier>ADD_NETHER_PYRESTONE_ORE =registerKey("add_nether_pyrestone_ore");
     public static final ResourceKey<BiomeModifier>ADD_END_ARKADIUM_ORE =registerKey("add_end_arkadium_ore");
+    public static final ResourceKey<BiomeModifier>ADD_WALNUT_TREE =registerKey("add_walnut_tree");
+    public static final ResourceKey<BiomeModifier>ADD_STRAWBERRY_BUSH =registerKey("add_strawberry_bush");
 
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
@@ -49,6 +51,16 @@ public class ModBiomeModifiers {
                 biomes.getOrThrow(BiomeTags.IS_NETHER),
                 HolderSet.direct(placedFeature.getOrThrow(ModPlacedFeatures.NETHER_PYRESTONE_ORE_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
+
+    context.register(ADD_WALNUT_TREE,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(biomes.getOrThrow(Biomes.FOREST),biomes.getOrThrow(Biomes.SAVANNA)),
+                HolderSet.direct(placedFeature.getOrThrow(ModPlacedFeatures.WALNUT_TREE_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_STRAWBERRY_BUSH,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(biomes.getOrThrow(Biomes.FOREST),biomes.getOrThrow(Biomes.FLOWER_FOREST)),
+                HolderSet.direct(placedFeature.getOrThrow(ModPlacedFeatures.STRAWBERRY_BUSH_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
 
     }
 

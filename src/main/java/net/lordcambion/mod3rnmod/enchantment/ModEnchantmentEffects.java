@@ -14,7 +14,7 @@ public class ModEnchantmentEffects {
             DeferredRegister.create(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, Mod3rnMod.MOD_ID);
 
     public static final RegistryObject<MapCodec<?extends EnchantmentEntityEffect>> LIGHTNING_STRIKER=
-            ENTITY_ENCHANTMENT_EFFECTS.register("lighting_striker",
+            ENTITY_ENCHANTMENT_EFFECTS.register("lightning_striker",
                     ()-> LightningStrikerEnchantmentEffect.CODEC);
 
     public static void register(BusGroup modBus){

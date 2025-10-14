@@ -1,11 +1,13 @@
 package net.lordcambion.mod3rnmod.datagen;
 
 import net.lordcambion.mod3rnmod.Mod3rnMod;
+import net.lordcambion.mod3rnmod.block.ModBlocks;
 import net.lordcambion.mod3rnmod.item.ModItems;
 import net.lordcambion.mod3rnmod.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.VanillaItemTagsProvider;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -159,6 +161,15 @@ public class ModItemTagProvider extends VanillaItemTagsProvider {
                 .add(ModItems.IRON_HAMMER.get())
                 .add(ModItems.DIAMOND_HAMMER.get())
                 .add(ModItems.NETHERITE_HAMMER.get());
+
+        tag(ItemTags.LOGS_THAT_BURN)
+                .add(ModBlocks.WALNUT_LOG.get().asItem())
+                .add(ModBlocks.STRIPPED_WALNUT_LOG.get().asItem())
+                .add(ModBlocks.WALNUT_WOOD.get().asItem())
+                .add(ModBlocks.STRIPPED_WALNUT_WOOD.get().asItem());
+
+        tag(ItemTags.PLANKS)
+                .add(ModBlocks.WALNUT_PLANKS.get().asItem());
 
     }
 }

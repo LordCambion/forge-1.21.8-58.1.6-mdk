@@ -142,6 +142,12 @@ public class ModRecipeProvider extends RecipeProvider implements DataProvider {
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.OBSIDIAN), RecipeCategory.DECORATIONS, ModBlocks.OBSIDIAN_WALL.get())
                 .unlockedBy(getHasName(Blocks.OBSIDIAN), has(Blocks.OBSIDIAN))
                 .save(this.output, Mod3rnMod.MOD_ID + ":obsidian_wall_from_stonecutter");
+
+
+//        stairBuilder(ModBlocks.WALNUT_STAIRS.get(),Ingredient.of(ModBlocks.WALNUT_STAIRS.get())).group("walnut")
+//                .unlockedBy(getHasName(ModBlocks.WALNUT_PLANKS.get()),has(ModBlocks.WALNUT_PLANKS.get())).save(this.output);
+//        slab(RecipeCategory.BUILDING_BLOCKS,ModBlocks.WALNUT_SLAB.get(),ModBlocks.WALNUT_PLANKS.get());
+//        buttonBuilder(ModBlocks.WALNUT_BUTTON.get())
     }
 
     // ============ HELPER FUNCTIONS ============

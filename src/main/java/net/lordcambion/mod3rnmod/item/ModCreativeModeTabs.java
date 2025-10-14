@@ -115,6 +115,21 @@ public class ModCreativeModeTabs {
                                 pOutput.accept(ModBlocks.OBSIDIAN_WALL.get());
                                 pOutput.accept(ModBlocks.OBSIDIAN_BUTTON.get());
                                 pOutput.accept(ModBlocks.OBSIDIAN_PRESSURE_PLATE.get());
+                                pOutput.accept(ModBlocks.WALNUT_LOG.get());
+                                pOutput.accept(ModBlocks.WALNUT_WOOD.get());
+                                pOutput.accept(ModBlocks.STRIPPED_WALNUT_LOG.get());
+                                pOutput.accept(ModBlocks.STRIPPED_WALNUT_WOOD.get());
+                                pOutput.accept(ModBlocks.WALNUT_PLANKS.get());
+                                pOutput.accept(ModBlocks.WALNUT_STAIRS.get());
+                                pOutput.accept(ModBlocks.WALNUT_SLAB.get());
+                                pOutput.accept(ModBlocks.WALNUT_FENCE.get());
+                                pOutput.accept(ModBlocks.WALNUT_FENCE_GATE.get());
+                                pOutput.accept(ModBlocks.WALNUT_BUTTON.get());
+                                pOutput.accept(ModBlocks.WALNUT_PRESSURE_PLATE.get());
+                                pOutput.accept(ModBlocks.WALNUT_DOOR.get());
+                                pOutput.accept(ModBlocks.WALNUT_TRAPDOOR.get());
+
+                                pOutput.accept(ModBlocks.WALNUT_SAPLING.get());
 
 
                             }).build());

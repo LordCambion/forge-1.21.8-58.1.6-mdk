@@ -29,6 +29,19 @@ public class ModBlockFamilies extends BlockFamilies {
 
                 .getFamily();
 
+    public static final BlockFamily WALNUT_BLOCKS = familyBuilder(ModBlocks.WALNUT_PLANKS.get())
+            .stairs(ModBlocks.WALNUT_STAIRS.get())
+            .button(ModBlocks.WALNUT_BUTTON.get())
+            .fence(ModBlocks.WALNUT_FENCE.get())
+            .fenceGate(ModBlocks.WALNUT_FENCE_GATE.get())
+            .door(ModBlocks.WALNUT_DOOR.get())
+            .pressurePlate(ModBlocks.WALNUT_PRESSURE_PLATE.get())
+            .slab(ModBlocks.WALNUT_SLAB.get())
+            .trapdoor(ModBlocks.WALNUT_TRAPDOOR.get())
+            //.wall(ModBlocks.WALNUT_WALL.get())
+
+            .getFamily();
+
 
 
     private static BlockFamily.Builder familyBuilder(Block pBaseBlock) {

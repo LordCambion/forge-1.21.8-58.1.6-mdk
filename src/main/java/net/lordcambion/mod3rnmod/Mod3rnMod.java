@@ -98,6 +98,7 @@ public final class Mod3rnMod {
             event.enqueueWork(() -> {
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.TOMATO_CROP.get(), ChunkSectionLayer.CUTOUT);
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.STRAWBERRY_BUSH.get(), ChunkSectionLayer.CUTOUT);
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.WALNUT_SAPLING.get(), ChunkSectionLayer.CUTOUT);
             });
 
         }

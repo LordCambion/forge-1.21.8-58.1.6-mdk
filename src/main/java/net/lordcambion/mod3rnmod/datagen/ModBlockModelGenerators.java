@@ -29,7 +29,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
-
+import net.minecraftforge.fml.common.Mod;
 
 
 import javax.annotation.Nullable;
@@ -147,6 +147,13 @@ public class ModBlockModelGenerators extends BlockModelGenerators {
                 BlockStateProperties.AGE_3,
                 0, 1, 2, 3
         );
+
+        this.createPlantWithDefaultItem(ModBlocks.WALNUT_SAPLING.get(), Blocks.POTTED_OAK_SAPLING, BlockModelGenerators.PlantType.NOT_TINTED);
+        //createTrivialCube(ModBlocks.WALNUT_PLANKS.get());
+        woodProvider(ModBlocks.WALNUT_LOG.get()).logWithHorizontal(ModBlocks.WALNUT_LOG.get()).wood(ModBlocks.WALNUT_WOOD.get());
+        woodProvider(ModBlocks.STRIPPED_WALNUT_LOG.get()).logWithHorizontal(ModBlocks.STRIPPED_WALNUT_LOG.get()).wood(ModBlocks.STRIPPED_WALNUT_WOOD.get());
+        createTintedLeaves(ModBlocks.WALNUT_LEAVES.get(), TexturedModel.LEAVES, -12012264);
+
         /*
 
         createStairs(ModBlocks.OBSIDIAN_STAIRS.get(), Blocks.OBSIDIAN);

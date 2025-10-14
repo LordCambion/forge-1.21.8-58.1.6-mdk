@@ -1,25 +1,32 @@
 package net.lordcambion.mod3rnmod.block;
 
+import com.mojang.serialization.MapCodec;
 import net.lordcambion.mod3rnmod.Mod3rnMod;
-import net.lordcambion.mod3rnmod.block.custom.GlueBlock;
+import net.lordcambion.mod3rnmod.block.custom.*;
 
-import net.lordcambion.mod3rnmod.block.custom.LampBlock;
-import net.lordcambion.mod3rnmod.block.custom.StrawBerryBushBlock;
-import net.lordcambion.mod3rnmod.block.custom.TomatoCropBlock;
+import net.lordcambion.mod3rnmod.block.custom.Leaves.WalnutLeavesBlock;
 import net.lordcambion.mod3rnmod.block.custom.nonMovable.*;
 import net.lordcambion.mod3rnmod.item.ModItems;
+import net.lordcambion.mod3rnmod.worldgen.tree.ModTreeGrowers;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.bus.BusGroup;
@@ -120,6 +127,7 @@ public static final RegistryObject<ButtonBlock>  OBSIDIAN_BUTTON =registerBlock(
                             instrument(NoteBlockInstrument.BASEDRUM).
                             requiresCorrectToolForDrops().
                             strength(50.0F, 1200.0F)
+                            .noCollission()
                             .setId(BLOCKS.key("obsidian_button"))
             ));
 
@@ -153,6 +161,148 @@ public static final RegistryObject<WallBlock>  OBSIDIAN_WALL =registerBlock("obs
                     .sound(SoundType.CROP)
                     .pushReaction(PushReaction.DESTROY)
                             .setId(BLOCKS.key("tomato_crop"))));
+
+    //log
+    public static final RegistryObject<RotatedPillarBlock> WALNUT_LOG =registerBlock("walnut_log",
+            ()-> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)
+                    .setId(BLOCKS.key("walnut_log"))));
+    public static final RegistryObject<RotatedPillarBlock> WALNUT_WOOD =registerBlock("walnut_wood",
+            ()-> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)
+                    .setId(BLOCKS.key("walnut_wood"))));
+    public static final RegistryObject<RotatedPillarBlock> STRIPPED_WALNUT_LOG =registerBlock("stripped_walnut_log",
+            ()-> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)
+                    .setId(BLOCKS.key("stripped_walnut_log"))));
+    public static final RegistryObject<RotatedPillarBlock> STRIPPED_WALNUT_WOOD =registerBlock("stripped_walnut_wood",
+            ()-> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD)
+                    .setId(BLOCKS.key("stripped_walnut_wood"))));
+    public static final RegistryObject<Block> WALNUT_PLANKS =registerBlock("walnut_planks",
+            ()-> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+                    .setId(BLOCKS.key("walnut_planks"))){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 5;
+                }
+            });
+
+    public static final RegistryObject<Block> WALNUT_LEAVES = registerBlock("walnut_leaves",
+            () -> new WalnutLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)
+                    .setId(BLOCKS.key("walnut_leaves"))) {
+
+
+            });
+
+    public static final RegistryObject<Block> WALNUT_SAPLING = registerBlock("walnut_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.WALNUT,BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)
+                    .setId(BLOCKS.key("walnut_sapling"))) {
+
+
+            });
+
+
+    public static final RegistryObject<StairBlock>  WALNUT_STAIRS =registerBlock("walnut_stairs",
+            ()-> new StairBlock(ModBlocks.WALNUT_PLANKS.get().defaultBlockState(),
+
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.WOOD)
+                            .instrument(NoteBlockInstrument.BASS)
+                            .strength(2.0F, 3.0F)
+                            .sound(SoundType.WOOD)
+                            .ignitedByLava()
+                            .setId(BLOCKS.key("walnut_stairs"))
+            ));
+
+    public static final RegistryObject<SlabBlock>  WALNUT_SLAB =registerBlock("walnut_slab",
+            ()-> new NonMovableSlabBlock(
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.WOOD)
+                            .instrument(NoteBlockInstrument.BASS)
+                            .strength(2.0F, 3.0F)
+                            .sound(SoundType.WOOD)
+                            .ignitedByLava()
+                            .setId(BLOCKS.key("walnut_slab"))
+            ));
+
+    public static final RegistryObject<PressurePlateBlock>  WALNUT_PRESSURE_PLATE =registerBlock("walnut_pressure_plate",
+            ()-> new PressurePlateBlock(BlockSetType.OAK,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.WOOD)
+                            .instrument(NoteBlockInstrument.BASS)
+                            .strength(2.0F, 3.0F)
+                            .sound(SoundType.WOOD)
+                            .ignitedByLava()
+                            .setId(BLOCKS.key("walnut_pressure_plate"))
+            ));
+
+    public static final RegistryObject<ButtonBlock>  WALNUT_BUTTON =registerBlock("walnut_button",
+            ()-> new NonMovableButtonBlock(BlockSetType.OAK,20,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.WOOD)
+                            .instrument(NoteBlockInstrument.BASS)
+                            .strength(2.0F, 3.0F)
+                            .sound(SoundType.WOOD)
+                            .ignitedByLava()
+                            .noCollission()
+                            .setId(BLOCKS.key("walnut_button"))
+            ));
+
+    public static final RegistryObject<FenceBlock>  WALNUT_FENCE =registerBlock("walnut_fence",
+            ()-> new FenceBlock(
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.WOOD)
+                            .instrument(NoteBlockInstrument.BASS)
+                            .strength(2.0F, 3.0F)
+                            .sound(SoundType.WOOD)
+                            .ignitedByLava()
+                            .setId(BLOCKS.key("walnut_fence"))
+            ));
+    public static final RegistryObject<FenceGateBlock>  WALNUT_FENCE_GATE =registerBlock("walnut_fence_gate",
+            ()-> new FenceGateBlock(WoodType.OAK,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.WOOD)
+                            .instrument(NoteBlockInstrument.BASS)
+                            .strength(2.0F, 3.0F)
+                            .sound(SoundType.WOOD)
+                            .ignitedByLava()
+                            .setId(BLOCKS.key("walnut_fence_gate"))
+            ));
+    public static final RegistryObject<DoorBlock>  WALNUT_DOOR =registerBlock("walnut_door",
+            ()-> new DoorBlock(BlockSetType.OAK,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.WOOD)
+                            .instrument(NoteBlockInstrument.BASS)
+                            .strength(2.0F, 3.0F)
+                            .sound(SoundType.WOOD)
+                            .noOcclusion()
+                            .ignitedByLava()
+                            .setId(BLOCKS.key("walnut_door"))
+            ));
+
+    public static final RegistryObject<TrapDoorBlock>  WALNUT_TRAPDOOR =registerBlock("walnut_trapdoor",
+            ()-> new TrapDoorBlock(BlockSetType.OAK,
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.WOOD)
+                            .instrument(NoteBlockInstrument.BASS)
+                            .strength(2.0F, 3.0F)
+                            .sound(SoundType.WOOD)
+                            .noOcclusion()
+                            .ignitedByLava()
+                            .setId(BLOCKS.key("walnut_trapdoor"))
+            ));
+
+
+
+
+
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){

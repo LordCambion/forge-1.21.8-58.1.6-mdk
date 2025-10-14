@@ -70,6 +70,24 @@
   "item.mod3rnmod.obsidian_pressure_plate":  "Obsidian Pressure Plate",
   "item.mod3rnmod.obsidian_button":  "Obsidian Button",
 
+  "item.mod3rnmod.walnut_log": "Walnut Log",
+  "item.mod3rnmod.stripped_walnut_log": "Stripped Walnut Log",
+  "item.mod3rnmod.walnut_wood": "Walnut Wood",
+  "item.mod3rnmod.stripped_walnut_wood": "Stripped Walnut Wood",
+  "item.mod3rnmod.walnut_leaves": "Walnut Leaves",
+  "item.mod3rnmod.walnut_planks": "Walnut Planks",
+  "item.mod3rnmod.walnut_sapling": "Walnut Sapling",
+  "item.mod3rnmod.walnut_slab": "Walnut Slab",
+  "item.mod3rnmod.walnut_stairs": "Walnut Stairs",
+  "item.mod3rnmod.walnut_fence": "Walnut Fence",
+  "item.mod3rnmod.walnut_fence_gate": "Walnut Fence Gate",
+  "item.mod3rnmod.walnut_pressure_plate": "Walnut Pressure Plate",
+  "item.mod3rnmod.walnut_button": "Walnut Button",
+  "item.mod3rnmod.walnut_door": "Walnut Door",
+  "item.mod3rnmod.walnut_trapdoor": "Walnut Trapdoor",
+
+
+
   "item.mod3rnmod.copper_lamp":  "Copper Lamp",
 
 
