@@ -81,6 +81,7 @@ public class ModCreativeModeTabs {
                             .title(Component.translatable("creativetab.mod3rnmod.food"))
                             .displayItems((pParameters, pOutput) -> {
                                 pOutput.accept(ModItems.POOP.get());
+                                pOutput.accept(ModItems.STRAWBERRY.get());
                                 pOutput.accept(ModItems.TOMATO.get());
                                 pOutput.accept(ModItems.TOMATO_SEEDS.get());
                             }).build());

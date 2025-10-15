@@ -1,0 +1,14 @@
+
+{
+  "asset_id": "mod3rnmod:sphinx",
+  "author": {
+    "color": "gray",
+    "translate": "painting.mod3rnmod.sphinx.author"
+  },
+  "height": 2,
+  "title": {
+    "color": "yellow",
+    "translate": "painting.mod3rnmod.sphinx.title"
+  },
+  "width": 3
+}

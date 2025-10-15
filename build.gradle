@@ -1,3 +1,5 @@
+
+
 plugins {
     id 'eclipse'
     id 'idea'
@@ -72,7 +74,7 @@ minecraft {
             // Recommended for development - enables more descriptive errors at the cost of slower startup and registration.
             property 'eventbus.api.strictRuntimeChecks', 'true'
 
-//            arg "-mixin.config=${mod_id}.mixins.json"
+           //arg "-mixin.config=${mod_id}.mixins.json"
         }
 
         client {
@@ -198,10 +200,10 @@ tasks.named('jar', Jar) {
             'Specification-Version'   : '1', // We are version 1 of ourselves
             'Implementation-Title'    : project.name,
             'Implementation-Version'  : project.jar.archiveVersion,
-            'Implementation-Vendor'   : mod_authors
-
+            'Implementation-Vendor'   : mod_authors,
+            //'MixinConfigs': "${mod_id}.mixins.json"
         ])
-       attributes['MixinConfigs'] = "${mod_id}.mixins.json"
+       //attributes['MixinConfigs'] = "${mod_id}.mixins.json"
     }
 }
 

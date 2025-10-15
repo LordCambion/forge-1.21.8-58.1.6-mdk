@@ -1,17 +1,11 @@
+
 {
   "required": true,
   "minVersion": "0.8",
   "package": "net.lordcambion.mod3rnmod.mixin",
   "compatibilityLevel": "JAVA_21",
-  "client": [
-
-  ],
-  "server": [],
+  "refmap": "mod3rnmod.refmap.json",
   "mixins": [
-
     "PistonMovingBlockEntityMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  }
+  ]
 }
