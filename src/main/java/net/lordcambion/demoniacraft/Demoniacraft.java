@@ -7,6 +7,7 @@ import net.lordcambion.demoniacraft.component.ModDataComponentTypes;
 import net.lordcambion.demoniacraft.effect.ModEffects;
 import net.lordcambion.demoniacraft.enchantment.ModEnchantmentEffects;
 import net.lordcambion.demoniacraft.entity.ModEntities;
+import net.lordcambion.demoniacraft.entity.ModEntityDataSerializers;
 import net.lordcambion.demoniacraft.entity.client.hedgehog.HedgehogRenderer;
 import net.lordcambion.demoniacraft.init.ModEntityTypes;
 import net.lordcambion.demoniacraft.item.ModCreativeModeTabs;
@@ -52,6 +53,7 @@ public final class Demoniacraft {
         ModEntityTypes.register(modBusGroup);
         //mobs
         ModEntities.register(modBusGroup);
+
         ModEnchantmentEffects.register(modBusGroup);
 
         BuildCreativeModeTabContentsEvent.getBus(modBusGroup).addListener(Demoniacraft::addCreative);
@@ -60,6 +62,8 @@ public final class Demoniacraft {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(()->{
+                    ModEntityDataSerializers.register();
+
                 ComposterBlock.COMPOSTABLES.put(ModItems.TOMATO.get(),0.4f);
                 ComposterBlock.COMPOSTABLES.put(ModItems.TOMATO_SEEDS.get(),0.15f);
                 ComposterBlock.COMPOSTABLES.put(ModItems.POOP.get(),0.4f);

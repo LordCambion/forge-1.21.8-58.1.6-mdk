@@ -79,7 +79,7 @@ public class ModItemModelGenerators extends ItemModelGenerators {
         generateFlatItem(ModItems.DYNAMITE_DISC.get(), ModelTemplates.MUSIC_DISC);
         generateFlatItem(ModItems.PANICDOX_DISC.get(), ModelTemplates.MUSIC_DISC);
 
-        //createFlatItemModel(ModItems.HEDGEHOG_SPAWN_EGG.get(),ModelTemplates.FLAT_ITEM);
+
         //seeds
         //generateFlatItem(ModItems.TOMATO_SEEDS.get(),ModelTemplates.FLAT_ITEM);
         generateFlatItem(ModItems.TOMATO.get(),ModelTemplates.FLAT_ITEM);

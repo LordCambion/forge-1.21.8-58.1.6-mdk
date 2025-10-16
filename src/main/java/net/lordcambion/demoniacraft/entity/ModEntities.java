@@ -13,13 +13,18 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModEntities {
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES=
-             DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Demoniacraft.MOD_ID);
-    public static ResourceKey<EntityType<?>> HEDGEHOG_KEY = ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.withDefaultNamespace("hedgehog"));
+    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
+            DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Demoniacraft.MOD_ID);
+    //public static ResourceKey<EntityType<?>> HEDGEHOG_KEY = ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.withDefaultNamespace("hedgehog"));
+
+
+    public static ResourceKey<EntityType<?>> HEDGEHOG_KEY = ResourceKey.create(Registries.ENTITY_TYPE,
+            ResourceLocation.fromNamespaceAndPath(Demoniacraft.MOD_ID, "hedgehog"));
 
     public static final RegistryObject<EntityType<HedgehogEntity>> HEDGEHOG =
             ENTITY_TYPES.register("hedgehog", () -> EntityType.Builder.of(HedgehogEntity::new, MobCategory.CREATURE)
-                    .sized(1f, 1f).build(HEDGEHOG_KEY));
+                    .sized(0.5f, 0.32f)
+                    .build(HEDGEHOG_KEY)); // CORREGGI: usa toString()
 
     public static void register(BusGroup modbus){
         ENTITY_TYPES.register(modbus);

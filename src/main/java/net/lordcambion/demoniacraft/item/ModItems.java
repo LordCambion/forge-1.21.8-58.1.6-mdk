@@ -265,7 +265,14 @@ public static final RegistryObject<Item> ARKADIUM_AXE= ITEMS.register("arkadium_
 
     );
 
-    //spawnegg
+    // Spawn Eggs
+    public static final RegistryObject<Item> HEDGEHOG_SPAWN_EGG = ITEMS.register("hedgehog_spawn_egg",
+            () -> new SpawnEggItem(
+                    ModEntities.HEDGEHOG.get(),  // la tua entità registrata
+                    new Item.Properties().stacksTo(64)
+                            .setId(ITEMS.key("hedgehog_spawn_egg"))
+            ));
+
 
 
     private static ItemAttributeModifiers addAttackRangeAttributes(String name) {

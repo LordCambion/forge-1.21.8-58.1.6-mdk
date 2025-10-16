@@ -97,6 +97,7 @@ public class ModCreativeModeTabs {
                                 pOutput.accept(ModItems.CRYSIS_DISC.get());
                                 pOutput.accept(ModItems.DYNAMITE_DISC.get());
                                 pOutput.accept(ModItems.PANICDOX_DISC.get());
+                                pOutput.accept(ModItems.HEDGEHOG_SPAWN_EGG.get());
                             }).build());
 
      public static final RegistryObject<CreativeModeTab> BLOCKS_TAB =
