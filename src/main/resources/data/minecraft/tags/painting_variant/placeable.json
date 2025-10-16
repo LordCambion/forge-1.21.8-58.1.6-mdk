@@ -1,8 +1,9 @@
 {
   "values": [
-    "mod3rnmod:creation",
-    "mod3rnmod:adam",
-    "mod3rnmod:eden",
-    "mod3rnmod:sphinx"
+    "demoniacraft:creation",
+    "demoniacraft:adam",
+    "demoniacraft:eden",
+    "demoniacraft:sphinx",
+    "demoniacraft:raid"
   ]
 }

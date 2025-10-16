@@ -72,4 +72,4 @@ description='''${mod_description}'''
 #[features.${mod_id}]
 #openGLVersion="[3.2,)"
 [[mixins]]
-config = "mod3rnmod.mixins.json"
+config = "demoniacraft.mixins.json"
